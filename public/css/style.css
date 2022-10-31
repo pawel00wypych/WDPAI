@@ -1,0 +1,23 @@
+body{
+    margin: 0;
+}
+
+.container{
+    width: 100vw;
+    height: 100vw;
+    background: #933535;
+}
+
+.first-page{
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 990px;
+    height: 468px;
+    left: 225px;
+    top: 278px;
+    
+    background: rgba(57, 11, 11, 0.7);
+    border: 2px solid #000000;
+    border-radius: 37px;
+}
