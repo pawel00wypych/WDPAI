@@ -42,7 +42,7 @@
                             <input name="password" type="password" placeholder="password">
                             <div></div>
                             <button>
-                                LOGIN
+                                REGISTER
                             </button>
                             <div></div>
                             <button class="fb-button">
