@@ -85,11 +85,12 @@ body{
 }
 
 .logo{
-    width: 80%;
+    width: 60vw;
+    height: 50vh;
     align-items: center;
-    height: auto;
-    max-width: 18em;
-    max-height: 22em;
+   
+    max-width: 25em;
+    max-height: 32em;
     margin-right: 5vw;
 }
 
@@ -157,8 +158,8 @@ body{
 form{
     display: grid;
     grid-template-columns:repeat(2, 1fr);
-    column-gap: 0.5em;
-    row-gap: 0.5em;
+    /*column-gap: 0.5em;
+    row-gap: 0.5em;*/
     padding: 0.5em;
 
     font-family: 'Dalek';
@@ -170,17 +171,37 @@ form{
     border: 0.15em solid #000000;
     border-radius: 2em;
 
+    grid-gap: 1em;
 }
 
 #email-1 {
-    text-align: right;
-    width: 60%;
+    /*! margin-top: 3em; */
+    /*! text-justify: ; */
+    /*! text-align: right; */
+    /*! width: 10vw; */
 
+    padding: 0 1em;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
 }
 
 #password-1 {
+    margin-top: 3em;
     text-align: right;
-    width: 60%;
+    width: 10vw;
+}
+
+input{
+    /*! margin-top: 2em; */
+    margin-right: 8em;
+    background: #6F1C1C;
+    border: 1px solid #000000;
+    border-radius: 10px;
+    line-height: 2.5em;
+    width: 25vw;
+    align-items: left;
+    align-self: left;
 }
 
 button{
@@ -191,46 +212,43 @@ button{
     background: #6F1C1C;
     border: 0.1em solid #000000;
     border-radius: 1em;
-    width: 85%;
+    width: 25vw;
     font-family: 'Dalek';
     font-style: normal;
     filter: drop-shadow(0px 8px 4px rgba(0, 0, 0, 0.25));
-    margin: 0.5em;
+    margin-right: 8em;
+    margin-top: 1em;
     line-height: 2.5em;
 }
 
 .fb-button {
     display: flex;
     flex-direction: row;
-    justify-content: left;
+    justify-content: center;
     align-items: center;
     background: #6F1C1C;
     border: 0.1em solid #000000;
     border-radius: 1em;
-    width: 85%;
+    width: 25vw;
+    
+    
     font-family: 'Dalek';
     font-style: normal;
     filter: drop-shadow(0px 8px 4px rgba(0, 0, 0, 0.25));
-    margin: 0.5em;
+    margin-right: 8em;
+    margin-bottom: 2em;
+    margin-top: 1em;
     line-height: 2.5em;
 }
 
 .fb-icon {
-    height: 2em;
-    width: 2em;
+    height: 3em;
+    width: 3em;
 
-    margin-right: 1em;
-    margin-left: 2em;
+    margin-right: 2em;
+    margin-left: 1em;
 }
 
-input{
-    background: #6F1C1C;
-    border: 1px solid #000000;
-    border-radius: 10px;
-    line-height: 2.5em;
-    width: 85%;
-    align-items: left;
-}
 
 @media only screen and (max-device-width: 420px){
     .container {
