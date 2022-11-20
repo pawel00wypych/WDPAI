@@ -1,5 +1,13 @@
 body{
+  width: 100vw;
+  height: 100vh;
     margin: 0;
+    background: #872626;
+    /*background: rgba(147, 53, 53, 0.9);*/
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+    display: flex;
+    flex-direction: column;
 }
 
 
@@ -29,14 +37,9 @@ body{
     padding: 1em;
 }
 
-.main-container {
-    width: 100vw;
-    height: 75vh;
-}
-
 .bot-container {
     width: 100vw;
-    height: 8vh;
+    /*height: 8vh;*/
     display: flex;
     flex-direction: column;
 }
@@ -76,30 +79,29 @@ body{
 }
 
 main {
+    margin-top: 1vh;
     width: 100vw;
     display: grid;
-    grid-template-columns: 40px auto 40px;
+    grid-template-columns: 2vw auto 2vw;
   }
   
   .handle {
-    width: 40px;
-    height: 40px;
-  /*   background-image: url();*/
-    background-color: blue;
-    
+    height: 4vh;
+    background-image: url("../img/handler.svg");
+    background-size: cover;
     
   } 
   
   main > section {
     grid-column: 1/4;
-    height: 500px;
-  
-    background-color: brown;
+    height: 60vh;
+    width: auto;
   }
   
   .handle-pipe {
-    background-image: url('https://upload.wikimedia.org/wikipedia/commons/a/a2/The_one_ring_animated.gif?20060812130421');
-  
+    background-image: url("../img/pipe.svg");
+    background-size: cover;
+
     color: white;
     display: flex;
     justify-content: center;
