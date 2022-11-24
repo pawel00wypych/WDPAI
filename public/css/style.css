@@ -2,12 +2,10 @@ body{
     margin: 0;
 }
 
-
 .container {
     width: 100vw;
     height: 100vh;
     background: #872626;
-    /*background: rgba(147, 53, 53, 0.9);*/
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
     display: flex;
@@ -108,16 +106,45 @@ body{
     border-radius: 37px;
 }
 
-.login-container-in1 {
+.login-container-in1.form {
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 0.1em;
-
+    font-size: 25px;
     width: 98%;
     height: 98%;
     background: #933535;
     border-radius: 37px;
+}
+
+.login-container-in1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0em 0.1em;
+ 
+    width: 98%;
+    height: 98%;
+    background: #933535;
+    border-radius: 37px;
+}
+
+.login-container-in2.main-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5em;
+
+    font-family: 'Dalek';
+    font-style: normal;
+    font-size: 20px;
+
+    width: 94%;
+    height: 88%;
+    background: rgba(57, 11, 11, 0.7);
+    border: 0.15em solid #000000;
+    border-radius: 2em;
 }
 
 .login-container-in2 {
@@ -140,26 +167,28 @@ body{
 .main-page-button {
  
     background: #6F1C1C;
-    border: 0.1em solid #000000;
+    border: 3px solid #000000;
     font-size: 20px;
     border-radius: 1em;
-    height: 25%;
-    width: 80%;
     filter: drop-shadow(0px 8px 4px rgba(0, 0, 0, 0.25));
-    line-height: 2.5em;
+    line-height: 3em;
+    padding: 0.2em;
+    margin-left: 3vw;
+    margin-right: 3vw;
 }
 
 .logo-main {
     height: 100%;
     width: 100%;
+    min-height: 150px;
+    min-width: 100px;
     align-items: center;
+
 }
 
 form{
     display: grid;
     grid-template-columns:repeat(2, 1fr);
-    /*column-gap: 0.5em;
-    row-gap: 0.5em;*/
     padding: 0.5em;
 
     font-family: 'Dalek';
@@ -171,74 +200,84 @@ form{
     border: 0.15em solid #000000;
     border-radius: 2em;
 
-    grid-gap: 1em;
+    grid-gap: 0.5em;
 }
 
 #email-1 {
-    /*! margin-top: 3em; */
-    /*! text-justify: ; */
-    /*! text-align: right; */
-    /*! width: 10vw; */
-
-    padding: 0 1em;
+    padding: 0 0.2em;
     display: flex;
     justify-content: flex-end;
     align-items: center;
 }
 
 #password-1 {
-    margin-top: 3em;
-    text-align: right;
-    width: 10vw;
+    padding: 0 0.2em;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
 }
 
 input{
-    /*! margin-top: 2em; */
-    margin-right: 8em;
+    padding: 0 0.2em;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
     background: #6F1C1C;
     border: 1px solid #000000;
     border-radius: 10px;
-    line-height: 2.5em;
-    width: 25vw;
-    align-items: left;
-    align-self: left;
+    margin-right: 5vw;
+    line-height: 5em;
+
 }
 
 button{
+    
+    width: 25vw;
     display: flex;
-    flex-direction: row;
     justify-content: center;
     align-items: center;
+    align-self: center;
     background: #6F1C1C;
-    border: 0.1em solid #000000;
-    border-radius: 1em;
-    width: 25vw;
+    border: 3px solid #000000;
+    border-radius: 10px;
+    line-height: 4em;
+    font-size: 20px;
     font-family: 'Dalek';
     font-style: normal;
     filter: drop-shadow(0px 8px 4px rgba(0, 0, 0, 0.25));
-    margin-right: 8em;
-    margin-top: 1em;
-    line-height: 2.5em;
+    margin-right: 5vw;
+
 }
+
+button:hover {
+    cursor:pointer;
+    background: #e20000;
+}
+
 
 .fb-button {
     display: flex;
-    flex-direction: row;
     justify-content: center;
     align-items: center;
+    align-self: center;
     background: #6F1C1C;
-    border: 0.1em solid #000000;
-    border-radius: 1em;
-    width: 25vw;
-    
-    
+    border: 3px solid #000000;
+    border-radius: 10px;
+    line-height: 4em;
+    font-size: 20px;
     font-family: 'Dalek';
     font-style: normal;
     filter: drop-shadow(0px 8px 4px rgba(0, 0, 0, 0.25));
-    margin-right: 8em;
-    margin-bottom: 2em;
-    margin-top: 1em;
-    line-height: 2.5em;
+    margin-right: 5vw;
+
+}
+
+.main-torch {
+
+    height: 25vh;
+    width: auto;
+    margin: 0 auto;
 }
 
 .fb-icon {
