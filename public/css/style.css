@@ -253,6 +253,8 @@ button{
 button:hover {
     cursor:pointer;
     background: #e20000;
+    visibility: visible;
+    opacity: 1;
 }
 
 
@@ -287,9 +289,6 @@ button:hover {
     margin-right: 2em;
     margin-left: 1em;
 }
-
-
-
 
 
 
