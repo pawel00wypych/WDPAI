@@ -130,7 +130,6 @@ main {
 }
 
 #mid-descriptions {
-  /*! background:#F9FD26; */
   width: 80vw;
   height: 70vh;
   min-height: 500px;
@@ -143,7 +142,6 @@ main {
 .description-text {
   width: 35vw;
   height: auto;
-  /*! background:#555; */
   margin: 1vh auto;
   font-size: 25px;
   align-items: center;
@@ -286,6 +284,69 @@ h2 {
   border: 1px solid #000000;
   border-radius: 5px;
 }
+
+
+
+/* ADD ROUTINE START*/
+.routine-text { 
+  background:#CCC;
+  min-height: 80px;
+  min-width: 80px;
+  width: 30vw;
+  height: 20vh;
+  margin: 1em auto;
+  border: 2px solid #000000;
+  border-radius: 10px;
+  background: #6F1C1C;
+
+  font-size: 25px;
+  padding: 0.5em;
+
+}
+
+#routine-name {
+  margin: 2vh auto;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  font-size: 22px;
+}
+
+#routine-exercises {
+  margin: 2vh auto;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  font-size: 22px;
+}
+
+#routine-description {
+  margin: 2vh auto;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  font-size: 22px;
+}
+
+#routine-save {
+  margin: 2vh auto;
+}
+/* ADD ROUTINE STOP*/
+
+/***************************************************/
+
+/* ADD WORKOUT START*/
+#template-or-nontemplate {
+  margin: 2vh auto;
+  font-size: 25px;
+  text-align: center;
+}
+
+
+#template-buttons {
+  margin: 2vh auto;
+}
+/* ADD WORKOUT STOP*/
 
 
 button:hover {
