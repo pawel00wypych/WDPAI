@@ -285,6 +285,7 @@ h2 {
   border-radius: 5px;
 }
 
+/*******************************************************************************************************************/
 
 
 /* ADD ROUTINE START*/
@@ -333,7 +334,7 @@ h2 {
 }
 /* ADD ROUTINE STOP*/
 
-/***************************************************/
+/*******************************************************************************************************************/
 
 /* ADD WORKOUT START*/
 #template-or-nontemplate {
@@ -348,6 +349,26 @@ h2 {
 }
 /* ADD WORKOUT STOP*/
 
+/*******************************************************************************************************************/
+
+
+/* SUMMARY START*/
+
+#message { 
+  font-size: 25px;
+  margin: 2vh auto;
+}
+
+#summary-period { 
+  margin: 2vh auto;
+  background: #6F1C1C;
+  border: 2px solid #000000;
+  border-radius: 10px;
+  font-size: 20px;
+  padding: 1em;
+}
+
+/* SUMMARY STOP*/
 
 button:hover {
   cursor:pointer;
