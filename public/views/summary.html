@@ -1,24 +1,22 @@
 <!DOCTYPE html>
 <head>
-    <title>WORKOUT HISTORY</title>
-    <link rel="stylesheet" type="text/css" href="../css/style-app.css">
+    <title>SUMMARY</title>
+    <link rel="stylesheet" type="text/css" href="public/css/style-app.css">
     <script src="https://kit.fontawesome.com/a3055391a0.js" crossorigin="anonymous"></script>
-
 </head>
 <body>
     <div class="top-container">
             <div class="torch">
-                <img src="../img/torch.svg" class="torch">
+                <img src="public/img/torch.svg" class="torch">
             </div>
             <div id="logo">
-                <img src="../img/olymper.svg" id="logo">          
+                <img src="public/img/olymper.svg" id="logo">          
             </div>
             <div class="torch">
-                <img src="../img/torch.svg" class="torch">
+                <img src="public/img/torch.svg" class="torch">
             </div>
                 <nav class="top-nav">
-                
-                    <button onclick="location.href = 'https://www.google.com';" class="top-nav-button" value="onclick">
+                    <button onclick="location.href = 'https://www.google.com';" class="top-nav-button active" value="onclick">
                         <i class="fa-solid fa-chart-line"></i>
                             SUMMARY
                         <div class="hint">SUMMARY:<br/>- Workout Statistics<br/>- Excersise Statistics</div>      
@@ -38,7 +36,7 @@
                         ADD EXERCISE
                         <div class="hint">ADD EXERCISE:<br/>- Add name<br/>- Choose category<br/>- Add description</div>
                     </button>
-                    <button class="top-nav-button active">
+                    <button class="top-nav-button">
                         <i class="fa-solid fa-magnifying-glass"></i>
                         WORKOUT HISTORY
                         <div class="hint">WORKOUT HISTORY<br/>- Check previous workouts</div>
@@ -59,7 +57,7 @@
                 </div>
             </div>
             <div class="pipe-handler">
-                <h1>Workout History</h1>
+                <h1>Summary</h1>
             </div>
             <div class="right-handler">
                 <div class="right-handler-l">
@@ -69,7 +67,20 @@
             </div>
           </div>
 
-          <div class="main-mid">mid</div>
+          <div class="main-mid">
+            <div id="message">
+                You last worked out
+                12 days ago on
+                friday, October 15, 2022
+            </div>
+            <div class="line"></div>
+            <div id="message">
+                Choose Period:
+            </div>
+            <input id="summary-period" type="date" value="2022-12-08" min="2022-10-01">
+            <div class="line"></div>
+            <div id="trainings-total">Trainings completed: 123</div>
+          </div>
 
           <div class="main-bot">
             <div class="left-handler">

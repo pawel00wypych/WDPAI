@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <head>
-    <title>ADD WORKOUT</title>
-    <link rel="stylesheet" type="text/css" href="../css/style-app.css">
+    <title>ADD EXERCISE</title>
+    <link rel="stylesheet" type="text/css" href="public/css/style-app.css">
     <script src="https://kit.fontawesome.com/a3055391a0.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="top-container">
             <div class="torch">
-                <img src="../img/torch.svg" class="torch">
+                <img src="public/img/torch.svg" class="torch">
             </div>
             <div id="logo">
-                <img src="../img/olymper.svg" id="logo">          
+                <img src="public/img/olymper.svg" id="logo">          
             </div>
             <div class="torch">
-                <img src="../img/torch.svg" class="torch">
+                <img src="public/img/torch.svg" class="torch">
             </div>
                 <nav class="top-nav">
                     <button onclick="location.href = 'https://www.google.com';" class="top-nav-button" value="onclick">
@@ -26,12 +26,12 @@
                         ADD ROUTINE
                         <div class="hint">ADD ROUTINE:<br/>Add Scheme that contains<br/>- Name of Routine<br/>- Excersises<br/>- Description</div>
                     </button>
-                    <button class="top-nav-button active">
+                    <button class="top-nav-button">
                         <i class="fa-solid fa-plus"></i>
                         ADD WORKOUT
                         <div class="hint">ADD WORKOUT:<br/>- Add workout that you completed to history<br/>- Add workout from template, copy previous<br/>- Add details</div>
                     </button>
-                    <button class="top-nav-button">
+                    <button class="top-nav-button active">
                         <i class="fa-solid fa-plus"></i>
                         ADD EXERCISE
                         <div class="hint">ADD EXERCISE:<br/>- Add name<br/>- Choose category<br/>- Add description</div>
@@ -57,7 +57,7 @@
                 </div>
             </div>
             <div class="pipe-handler">
-                <h1>Add Workout</h1>
+                <h1>Add Exercise</h1>
             </div>
             <div class="right-handler">
                 <div class="right-handler-l">
@@ -67,33 +67,43 @@
             </div>
           </div>
 
-          <div class="main-mid workout">
+          <div class="main-mid">
+            <h2>Category:</h2>
+            <div id="mid-categories">
+                <button class="mid-cat-button">
+                    <i class="fa-solid fa-dumbbell"></i>
+                    Main Exercise
+                </button>
+                <button class="mid-cat-button">
+                    <i class="fa-solid fa-dumbbell"></i>
+                    Auxiliary Exercise
+                </button>
+                <button class="mid-cat-button">
+                    <i class="fa-solid fa-dumbbell"></i>
+                    Accessory Exercise
+                </button>
+            </div>
+            <div class="line"></div>
+            <div id="mid-descriptions">
+                <div class="description-text">
+                    Add name of exercise:
+                    <textarea class="mid-text" placeholder="Bench Press"></textarea>
 
-            <div id="template-or-nontemplate">New Training Or Use One From Template:</div>
-            <div id="template-buttons">
-                <button class="mid-cat-button workout">
-                    <i class="fa-solid fa-book-open"></i>
-                    Template
-                </button>
-                <button class="mid-cat-button workout">
-                    <i class="fa-solid fa-plus"></i>
-                    Add New
-                </button>
+                </div>
+                <div class="description-text">
+                    Description (additionally):
+                    <textarea  placeholder="Description" class="mid-text"></textarea>
+                </div>
+                
+                <div class="description-text">
+                    Add working muscles (additionally):
+                    <textarea  placeholder="chest,triceps,shoulders" class="mid-text"></textarea>
+                </div>
             </div>
-            <div id="routine-exercises">
-                Add Exercises:
-                <textarea  placeholder="Squat.." class="routine-text"></textarea>
-            </div>
-            <div id="routine-description">
-                Add Description:
-                <textarea  placeholder="Light training, intensity is 80% of B routine.." class="routine-text"></textarea>
-            </div>
-            <div id="routine-save">
-                <button class="mid-cat-button save">
-                    <i class="fa-solid fa-book-open"></i>
-                    Save Routine
-                </button>
-            </div>
+            <button class="mid-cat-button save">
+                <i class="fa-solid fa-book-open"></i>
+                Save Exercise
+            </button>
           </div>
 
           <div class="main-bot">
