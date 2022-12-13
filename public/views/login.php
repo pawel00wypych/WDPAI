@@ -30,7 +30,14 @@
             </div>
             <div class="login-container">
                 <div class="login-container-in1 form">
-                        <form>
+                    <div class="messages" >
+                        <?php if(isset($messages)) {
+                            foreach ($messages as $message)
+                                echo $message;
+                        }
+                        ?>
+                    </div>
+                        <form action="login2" method="POST" >
                             <div id="email-1">
                                 EMAIL:
                             </div>
@@ -41,8 +48,8 @@
                             </div>
                             <input name="password" type="password" placeholder="password">
                             <div></div>
-                            <button>
-                                REGISTER
+                            <button type="submit">
+                                LOGIN
                             </button>
                             <div></div>
                             <button class="fb-button">
@@ -56,18 +63,18 @@
         <div class="greek-pattern">
             <img src="public/img/greek_pt_top.svg" id="greek-pt-top">
             <div class="greek-cntr">
-                <img src="../img/greek_pt_cntr.svg" id="greek-pt-cntr">
-                <img src="../img/greek_pt_cntr.svg" id="greek-pt-cntr">
-                <img src="../img/greek_pt_cntr.svg" id="greek-pt-cntr">
-                <img src="../img/greek_pt_cntr.svg" id="greek-pt-cntr">
-                <img src="../img/greek_pt_cntr.svg" id="greek-pt-cntr">
-                <img src="../img/greek_pt_cntr.svg" id="greek-pt-cntr">
-                <img src="../img/greek_pt_cntr.svg" id="greek-pt-cntr">
-                <img src="../img/greek_pt_cntr.svg" id="greek-pt-cntr">
-                <img src="../img/greek_pt_cntr.svg" id="greek-pt-cntr">
-                <img src="../img/greek_pt_cntr.svg" id="greek-pt-cntr">
-                <img src="../img/greek_pt_cntr.svg" id="greek-pt-cntr">
-                <img src="../img/greek_pt_cntr.svg" id="greek-pt-cntr">
+                <img src="public/img/greek_pt_cntr.svg" id="greek-pt-cntr">
+                <img src="public/img/greek_pt_cntr.svg" id="greek-pt-cntr">
+                <img src="public/img/greek_pt_cntr.svg" id="greek-pt-cntr">
+                <img src="public/img/greek_pt_cntr.svg" id="greek-pt-cntr">
+                <img src="public/img/greek_pt_cntr.svg" id="greek-pt-cntr">
+                <img src="public/img/greek_pt_cntr.svg" id="greek-pt-cntr">
+                <img src="public/img/greek_pt_cntr.svg" id="greek-pt-cntr">
+                <img src="public/img/greek_pt_cntr.svg" id="greek-pt-cntr">
+                <img src="public/img/greek_pt_cntr.svg" id="greek-pt-cntr">
+                <img src="public/img/greek_pt_cntr.svg" id="greek-pt-cntr">
+                <img src="public/img/greek_pt_cntr.svg" id="greek-pt-cntr">
+                <img src="public/img/greek_pt_cntr.svg" id="greek-pt-cntr">
 
             </div>
             <img src="public/img/greek_pt_bot.svg" id="greek-pt-bot">
