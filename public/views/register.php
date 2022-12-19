@@ -30,7 +30,7 @@
             </div>
             <div class="login-container">
                 <div class="login-container-in1 form">
-                        <form>
+                        <form class="login_and_register" action="login" method="GET">
                             <div id="email-1">
                                 EMAIL:
                             </div>
@@ -41,7 +41,7 @@
                             </div>
                             <input name="password" type="password" placeholder="password">
                             <div></div>
-                            <button>
+                            <button type="submit">
                                 REGISTER
                             </button>
                             <div></div>

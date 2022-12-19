@@ -30,16 +30,16 @@
             </div>
             <div class="login-container">
                 <div class="login-container-in1"> 
-                    <div class="login-container-in2 main-page">   
-                        <button class="main-page-button">
-                            LOGIN
-                        </button>
+                    <div class="login-container-in2 main-page">
+                            <button  onclick="document.location='login'" class="main-page-button">
+                                LOGIN
+                            </button>
                         <div class="logo-main">
                             <img src="public/img/olymper.svg" class="logo-main">
-                        </div>        
-                        <button class="main-page-button">
-                            REGISTER
-                        </button>
+                        </div>
+                            <button onclick="document.location='register'" class="main-page-button" >
+                                REGISTER
+                            </button>
                     </div>    
                 </div>
             </div>

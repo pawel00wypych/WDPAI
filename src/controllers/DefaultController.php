@@ -9,6 +9,11 @@ class DefaultController  extends AppController{
         $this->render('main_page', ['message' => "Hello World"]);
     }
 
+    public function main_page() {
+
+        $this->render('main_page', ['message' => ""]);
+    }
+
     public function login() {
 
         $this->render('login');
@@ -27,19 +32,19 @@ class DefaultController  extends AppController{
 
     }
 
-    public function addWorkout() {
+    public function add_workout() {
 
         $this->render('add_workout');
 
     }
 
-    public function addExercise() {
+    public function add_exercise() {
 
         $this->render('add_exercise');
 
     }
 
-    public function addRoutine() {
+    public function add_routine() {
 
         $this->render('add_routine');
 

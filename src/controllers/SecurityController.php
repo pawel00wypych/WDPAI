@@ -5,7 +5,7 @@ require_once __DIR__.'/../models/User.php';
 
 class SecurityController extends DefaultController
 {
-    public function login2()
+    public function login()
     {
         $user= new User('jsnow@pk.edu.pl', 'admin', 'Johnny', 'Snow');
 

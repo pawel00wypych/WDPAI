@@ -30,14 +30,7 @@
             </div>
             <div class="login-container">
                 <div class="login-container-in1 form">
-                    <div class="messages" >
-                        <?php if(isset($messages)) {
-                            foreach ($messages as $message)
-                                echo $message;
-                        }
-                        ?>
-                    </div>
-                        <form action="login2" method="POST" >
+                        <form class="login_and_register" action="login" method="POST" >
                             <div id="email-1">
                                 EMAIL:
                             </div>
@@ -57,6 +50,13 @@
                                 WITH FACEBOOK
                             </button>
                         </form>
+                    <div class="messages" >
+                        <?php if(isset($messages)) {
+                            foreach ($messages as $message)
+                                echo $message;
+                        }
+                        ?>
+                    </div>
                 </div>
             </div>
         </div>
