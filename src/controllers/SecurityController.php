@@ -2,6 +2,7 @@
 
 require_once 'DefaultController.php';
 require_once __DIR__.'/../models/User.php';
+require_once __DIR__.'/../repository/UserRepository.php';
 
 class SecurityController extends DefaultController
 {
@@ -9,7 +10,7 @@ class SecurityController extends DefaultController
 
     public function login()
     {
-        $user= new User('jsnow@pk.edu.pl', 'admin', 'Johnny', 'Snow');
+        $userRepository = new UserRepository();
 
         if (!$this->isPost()) {
             return $this->render('login');
@@ -18,7 +19,11 @@ class SecurityController extends DefaultController
         $email = $_POST['email'];
         $password = $_POST['password'];
 
+        $user = $userRepository->getUser($email);
 
+        if(!$user) {
+            return $this->render('login', ['messages' => ['User does not exist!']]);
+        }
 
         if ($user->getEmail() !== $email) {
             return $this->render('login', ['messages' => ['User with this email does not exist!']]);
@@ -29,12 +34,12 @@ class SecurityController extends DefaultController
         }
 
         $cookie_name = "user";
-        $cookie_value = "John Snow";
+        $cookie_value = $user->getName()." ".$user->getSurname();
 
         setcookie($cookie_name, $cookie_value, time() + 180, "/");
 
         $url = "http://$_SERVER[HTTP_HOST]";
-        header("Location: {$url}/summary");
+        header("Location:$url/summary");
 
     }
 

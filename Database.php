@@ -7,7 +7,9 @@ class Database {
     private $host;
     private $database;
 
-    public function __construct()
+    private static $instance;
+
+    private function __construct()
     {
 
         $this->username = 'dbuser';
@@ -43,14 +45,20 @@ class Database {
 
             return $conn;
 
-        }
-
-        catch(PDOException $e) {
+        } catch(PDOException $e) {
 
             die("Connection failed: " . $e->getMessage());
 
         }
 
+    }
+
+    public static function getInstance(): Database
+    {
+        if(self::$instance == null){
+            self::$instance = new Database();
+        }
+        return self::$instance;
     }
 
 }
