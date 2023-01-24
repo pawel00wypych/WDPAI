@@ -19,7 +19,13 @@ class SecurityController extends DefaultController
         $email = $_POST['email'];
         $password = $_POST['password'];
 
-        $user = $userRepository->getUser($email);
+        try {
+
+            $user = $userRepository->getUser($email);
+        }catch (Exception $e){
+
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
 
         if(!$user) {
             return $this->render('login', ['messages' => ['User does not exist!']]);
