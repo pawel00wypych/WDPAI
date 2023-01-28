@@ -35,8 +35,8 @@
                                 EMAIL:
                             </div>
                             
-                            <input name="email" type="text" placeholder="email@email.com">
-                            <div id="password-1" style="float:left;">
+                            <input name="email" type="email" placeholder="email@email.com">
+                            <div id="password-1">
                                 PASSWORD:
                             </div>
                             <input name="password" type="password" placeholder="password">

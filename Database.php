@@ -2,12 +2,12 @@
 
 class Database {
 
-    private $username;
-    private $password;
-    private $host;
-    private $database;
+    private string $username;
+    private string $password;
+    private string $host;
+    private string $database;
 
-    private static $instance;
+    private static Database $instance;
 
     private function __construct()
     {

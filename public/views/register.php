@@ -35,21 +35,46 @@
                                 EMAIL:
                             </div>
                             
-                            <input name="email" type="text" placeholder="email@email.com">
-                            <div id="password-1" style="float:left;">
+                            <input name="email" type="email" placeholder="email@email.com">
+                            <div id="password-1">
                                 PASSWORD:
                             </div>
                             <input name="password" type="password" placeholder="password">
+                            <div id="password-1">
+                                CONFIRM PASSWORD:
+                            </div>
+                            <input name="confirmedPassword" type="password" placeholder="password">
+                            <div></div>
+                            <div>
+                            NAME:
+                            </div>
+                            <input name="name" type="text" placeholder="name">
+                            <div></div>
+                            <div>
+                            SURNAME:
+                            </div>
+                            <input name="surname" type="text" placeholder="surname">
+                            <div></div>
+                            <div>
+                            PHONE:
+                            </div>
+                            <input name="phone" type="tel" placeholder="123456789">
                             <div></div>
                             <button type="submit">
                                 REGISTER
                             </button>
-                            <div></div>
                             <button class="fb-button">
                                 <img src="public/img/fb_icon.svg" class="fb-icon">
                                 WITH FACEBOOK
                             </button>
                         </form>
+                    <div class="messages" >
+                        <?php if(isset($messages)) {
+                            foreach ($messages as $message)
+                                echo $message;
+                        }
+                        ?>
+                    </div>
                 </div>
             </div>
         </div>

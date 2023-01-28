@@ -3,11 +3,11 @@
 class User
 {
 
-    private $email;
-    private $password;
-    private $name;
-    private $surname;
-
+    private string $email;
+    private string $password;
+    private string $name;
+    private string $surname;
+    private int $phone;
 
     public function __construct(string $email,string $password,string $name,string $surname)
     {
@@ -35,5 +35,15 @@ class User
     public function getSurname(): string
     {
         return $this->surname;
+    }
+
+    public function getPhone(): int
+    {
+        return $this->phone;
+    }
+
+    public function setPhone(mixed $phone): void
+    {
+        $this->phone = $phone;
     }
 }
