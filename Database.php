@@ -7,7 +7,7 @@ class Database {
     private string $host;
     private string $database;
 
-    private static Database $instance;
+    private static $instance;
 
     private function __construct()
     {

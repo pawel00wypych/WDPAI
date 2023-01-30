@@ -6,7 +6,7 @@ class DefaultController  extends AppController{
 
     public function index() {
 
-        $this->render('main_page', ['message' => "Hello World"]);
+        $this->render('main_page');
     }
 
     public function main_page() {
@@ -20,11 +20,6 @@ class DefaultController  extends AppController{
 
     }
 
-    public function register() {
-
-        $this->render('register');
-
-    }
 
     public function summary() {
 

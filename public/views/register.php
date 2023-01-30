@@ -30,7 +30,7 @@
             </div>
             <div class="login-container">
                 <div class="login-container-in1 form">
-                        <form class="login_and_register" action="login" method="GET">
+                        <form class="login_and_register" action="register" method="POST">
                             <div id="email-1">
                                 EMAIL:
                             </div>

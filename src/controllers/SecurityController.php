@@ -4,7 +4,7 @@ require_once 'DefaultController.php';
 require_once __DIR__.'/../models/User.php';
 require_once __DIR__.'/../repository/UserRepository.php';
 
-class SecurityController extends DefaultController
+class SecurityController extends AppController
 {
 
 
@@ -23,7 +23,7 @@ class SecurityController extends DefaultController
         }
 
         $email = $_POST['email'];
-        $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
+
 
         try {
 
@@ -33,15 +33,19 @@ class SecurityController extends DefaultController
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
 
+
         if(!$user) {
             return $this->render('login', ['messages' => ['User does not exist!']]);
         }
+
+        $password = $_POST['password'];
+        $hashedPassword = password_hash($password, PASSWORD_BCRYPT, ['salt'=>$user->getSalt()] );
 
         if ($user->getEmail() !== $email) {
             return $this->render('login', ['messages' => ['User with this email does not exist!']]);
         }
 
-        if ($user->getPassword() !== $password) {
+        if ($user->getPassword() !== $hashedPassword) {
             return $this->render('login', ['messages' => ['Wrong password!']]);
         }
 
@@ -68,17 +72,34 @@ class SecurityController extends DefaultController
         $name = $_POST['name'];
         $surname = $_POST['surname'];
         $phone = $_POST['phone'];
+        $salt = $this->randomSalt();
+
+        if($this->userRepository->userExists($email)) {
+            return $this->render('register', ['messages' => ['This email is being used']]);
+        }
 
         if ($password !== $confirmedPassword) {
             return $this->render('register', ['messages' => ['Please provide proper password']]);
         }
 
+
         //TODO try to use better hash function
-        $user = new User($email, password_hash($password, PASSWORD_BCRYPT), $name, $surname);
+        $user = new User($email, password_hash($password, PASSWORD_BCRYPT, ['salt'=>$salt]), $name, $surname, $salt, 1);
         $user->setPhone($phone);
 
         $this->userRepository->addUser($user);
 
         return $this->render('login', ['messages' => ['You\'ve been successfully registered!']]);
+    }
+
+    function randomSalt($len = 22): string
+    {
+        $chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789`~!@#$%^&*()-=_+';
+        $l = strlen($chars) - 1;
+        $str = '';
+        for ($i = 0; $i < $len; ++$i) {
+            $str .= $chars[rand(0, $l)];
+        }
+	    return $str;
     }
 }

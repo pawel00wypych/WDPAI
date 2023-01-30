@@ -6,11 +6,31 @@ require_once __DIR__.'/../models/User.php';
 class UserRepository extends Repository
 {
 
+    public function userExists(string $email): bool
+    {
+        $stmt = $this->database->connect()->prepare('
+            SELECT * FROM "user" LEFT JOIN user_details 
+            ON "user".id_user_details = user_details.id_user_details WHERE email = :email
+        ');
+
+        $stmt->bindParam(':email', $email);
+        $stmt->execute();
+
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if (!$user) {
+            return false;
+        }
+
+        return true;
+    }
     public function getUser(string $email): ?User
     {
         $stmt = $this->database->connect()->prepare('
-            SELECT * FROM public.user WHERE email = :email
+            SELECT * FROM "user" LEFT JOIN user_details 
+            ON "user".id_user_details = user_details.id_user_details WHERE email = :email
         ');
+
         $stmt->bindParam(':email', $email);
         $stmt->execute();
 
@@ -22,16 +42,20 @@ class UserRepository extends Repository
 
         return new User(
             $user['email'],
-            $user['password'],
-            $user['name'],
-            $user['surname']
+            $user['user_password'],
+            $user['user_name'],
+            $user['surname'],
+            $user['salt'],
+            $user['id_role']
         );
     }
 
     public function addUser(User $user)
     {
+        $date = new DateTime();
+
         $stmt = $this->database->connect()->prepare('
-            INSERT INTO public.user_details (user_name, surname, phone)
+            INSERT INTO user_details (user_name, surname, phone)
             VALUES (?, ?, ?)
         ');
 
@@ -42,24 +66,27 @@ class UserRepository extends Repository
         ]);
 
         $stmt = $this->database->connect()->prepare('
-            INSERT INTO public.user (email, user_password, id_user_details)
-            VALUES (?, ?, ?)
+            INSERT INTO "user" (id_role, email, user_password, id_user_details, salt, created_at)
+            VALUES (?, ?, ?, ?, ?, ?)
         ');
 
         $stmt->execute([
+            $user->getRole(),
             $user->getEmail(),
             $user->getPassword(),
-            $this->getUserDetailsId($user)
+            $this->getUserDetailsId($user),
+            $user->getSalt(),
+            $date->format("Y-m-d")
         ]);
     }
 
     public function getUserDetailsId(User $user): int
     {
         $stmt = $this->database->connect()->prepare('
-            SELECT * FROM public.user_details WHERE user_name = :name AND surname = :surname AND phone = :phone
+            SELECT * FROM user_details WHERE user_name = :user_name AND surname = :surname AND phone = :phone
         ');
         $name = $user->getName();
-        $stmt->bindParam(':name', $name);
+        $stmt->bindParam(':user_name', $name);
         $surname = $user->getSurname();
         $stmt->bindParam(':surname', $surname);
         $phone = $user->getPhone();
@@ -67,6 +94,6 @@ class UserRepository extends Repository
         $stmt->execute();
 
         $data = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $data['id'];
+        return $data['id_user_details'];
     }
 }
