@@ -294,9 +294,6 @@ button:hover {
 
 
 
-
-
-
 @media only screen and (max-device-width: 420px){
 
     body{
@@ -542,4 +539,11 @@ button:hover {
         border: 0.15em solid #000000;
         border-radius: 2em;
     }
+}
+
+.no-valid {
+    border: 3px solid yellow;
+    border-radius: 1em;
+    box-shadow: 0 0 0.2em yellow;
+    outline: none;
 }

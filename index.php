@@ -9,9 +9,12 @@ Routing::get('', 'DefaultController');
 Routing::get('main_page', 'DefaultController');
 Routing::post('login', 'SecurityController');
 Routing::post('register', 'SecurityController');
-Routing::get('summary', 'DefaultController');
-Routing::get('add_workout', 'DefaultController');
-Routing::get('add_exercise', 'DefaultController');
-Routing::get('add_routine', 'DefaultController');
-Routing::get('workout_history', 'DefaultController');
+Routing::get('summary', 'SecurityController');
+Routing::post('add_workout', 'WorkoutController');
+Routing::post('add_exercise', 'WorkoutController');
+Routing::get('add_routine', 'SecurityController');
+Routing::get('workout_history', 'SecurityController');
+Routing::get('settings', 'SecurityController');
+Routing::post('logout', 'SecurityController');
+
 Routing::run($path);

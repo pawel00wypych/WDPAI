@@ -41,7 +41,7 @@
                         WORKOUT HISTORY
                         <div class="hint">WORKOUT HISTORY<br/>- Check previous workouts</div>
                     </button>
-                    <button class="top-nav-button">
+                    <button onclick="document.location='settings'" class="top-nav-button">
                         <i class="fa-solid fa-gear"></i>
                         SETTINGS
                     </button>

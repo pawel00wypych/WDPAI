@@ -418,12 +418,8 @@ border-radius:0 7px 7px 0;
 transition: opacity 0.3s;
 box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.05);
 z-index: 1;
--webkit-text-stroke: none;
 
 }
-
-
-
 
 
 @media only screen and (max-device-width: 420px){
@@ -545,4 +541,11 @@ overflow-y: hidden;
 margin-left: 1vw;
 }
 
+}
+
+.no-valid {
+  border: 3px solid yellow;
+  border-radius: 1em;
+  box-shadow: 0 0 0.2em yellow;
+  outline: none;
 }
