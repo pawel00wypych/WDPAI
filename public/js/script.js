@@ -1,10 +1,9 @@
 const form = document.querySelector("form");
 const emailInput = form.querySelector('input[name="email"]');
+const passwordInput = form.querySelector('input[name="password"]');
 const confirmedPasswordInput = form.querySelector('input[name="confirmedPassword"]');
 
 function isEmail(email) {
-    console.log(email);
-
     return /\S+@\S+\.\S+/.test(email);
 }
 
@@ -14,18 +13,23 @@ function arePasswordsSame(password, confirmedPassword) {
 
 function markValidation(element, condition) {
     console.log("mark validation");
-
+    console.log(element);
+    if (!element.classList.contains('no-valid')) {
+        console.log('Element does NOT have class');
+    } else {
+        console.log('Element has class');
+    }
     !condition ? element.classList.add('no-valid') : element.classList.remove('no-valid');
     if (!element.classList.contains('no-valid')) {
         console.log('Element does NOT have class');
     } else {
         console.log('Element has class');
     }
+    console.log(element);
 }
 
 function validateEmail() {
     setTimeout(function () {
-            console.log(emailInput);
 
             markValidation(emailInput, isEmail(emailInput.value));
         },
@@ -35,11 +39,13 @@ function validateEmail() {
 
 function validatePassword() {
     setTimeout(function () {
-        console.log(confirmedPasswordInput);
             const condition = arePasswordsSame(
-                confirmedPasswordInput.previousElementSibling.value,
+                passwordInput.value,
                 confirmedPasswordInput.value
             );
+            console.log(passwordInput.value);
+
+            console.log(confirmedPasswordInput.value);
             console.log(condition);
 
             markValidation(confirmedPasswordInput, condition);

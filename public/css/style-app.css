@@ -120,6 +120,14 @@ main {
   
 }
 
+#user {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  font-size: 20px;
+  background: #555555;
+}
+
 #mid-categories {
   width: 80vw;
   height: 20vh;
@@ -420,6 +428,7 @@ box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.05);
 z-index: 1;
 
 }
+
 
 
 @media only screen and (max-device-width: 420px){

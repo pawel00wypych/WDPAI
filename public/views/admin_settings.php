@@ -68,13 +68,27 @@
         </div>
     </div>
     <form id="logoutForm" method="post" action="logout"></form>
+    <form id="getUsersForm" method="post" action="getUsers"></form>
 
     <div class="main-mid">
         <button form="logoutForm" type="submit">
             Logout
         </button>
-    </div>
 
+
+        <button form="getUsersForm" type="submit">
+            Show Users
+        </button>
+
+        <?php if(isset($users)) foreach ($users as $user): ?>
+            <div id="user">
+                <h1><?= $user->getName(); ?></h1>
+                <h1><?= $user->getSurname(); ?></h1>
+                <h1><?= $user->getEmail(); ?></h1>
+                <h1><?= $user->getCreatedAt(); ?></h1>
+            </div>
+        <?php endforeach; ?>
+    </div>
     <div class="main-bot">
         <div class="left-handler">
             <div class="left-handler-l">

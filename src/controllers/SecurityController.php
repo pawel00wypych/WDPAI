@@ -53,7 +53,7 @@ class SecurityController extends DefaultController
 
         $cookie_name = "user";
         $cookie_value = $user->getName()." ".
-            $user->getSurname()." ".
+            $user->getEmail()." ".
             password_hash($this->secret_word, PASSWORD_BCRYPT);
 
         setcookie($cookie_name, $cookie_value, time() + 180, "/");
@@ -87,7 +87,6 @@ class SecurityController extends DefaultController
         }
 
 
-        //TODO try to use better hash function
         $user = new User($email, password_hash($password, PASSWORD_BCRYPT, ['salt'=>$salt]), $name, $surname, $salt, 1);
         $user->setPhone($phone);
 
@@ -110,11 +109,8 @@ class SecurityController extends DefaultController
     function validate_cookie(): bool
     {
 
-         list($c_username,$cookie_surname, $hashed_secret_word) = preg_split(' ',$_COOKIE['value']);
-         if ($c_username." ".$cookie_surname." ".$hashed_secret_word ===
-                $c_username." ".$cookie_surname." ".password_hash($this->secret_word, PASSWORD_BCRYPT)
-         )
-         {
+        list(,, $hashed_secret_word) = explode(' ',$_COOKIE['user']);
+        if (password_verify($this->secret_word, $hashed_secret_word)) {
              return true;
          }
 
@@ -123,7 +119,7 @@ class SecurityController extends DefaultController
 
     public function summary() {
 
-        if(isset($_COOKIE['user']))
+        if(isset($_COOKIE['user']) && $this->validate_cookie())
             $this->render('summary');
         else {
             $url = "http://$_SERVER[HTTP_HOST]";
@@ -133,7 +129,7 @@ class SecurityController extends DefaultController
 
     public function add_routine() {
 
-        if(isset($_COOKIE['user']))
+        if(isset($_COOKIE['user']) && $this->validate_cookie())
             $this->render('add_routine');
         else {
             $url = "http://$_SERVER[HTTP_HOST]";
@@ -143,7 +139,7 @@ class SecurityController extends DefaultController
 
     public function workout_history() {
 
-        if(isset($_COOKIE['user']))
+        if(isset($_COOKIE['user']) && $this->validate_cookie())
             $this->render('workout_history');
         else {
             $url = "http://$_SERVER[HTTP_HOST]";
@@ -154,9 +150,26 @@ class SecurityController extends DefaultController
 
     public function settings()
     {
-        if (isset($_COOKIE['user']))
+        list(,$cookie_email,) = explode(' ',$_COOKIE['user']);
+        $role = $this->userRepository->getUser($cookie_email)->getRole();
+
+        if (isset($_COOKIE['user']) && $this->validate_cookie() && ($role === 2))
+            $this->render('admin_settings', ['users' => '']);
+        else if (isset($_COOKIE['user']) && $this->validate_cookie() && ($role === 1))
             $this->render('settings');
-        else {
+        else
+        {
+            $url = "http://$_SERVER[HTTP_HOST]";
+            header("Location:$url/login");
+        }
+    }
+
+    public function getUsers() {
+        if (isset($_COOKIE['user']))
+        {
+            $users = $this->userRepository->getUsers();
+            $this->render('admin_settings', ['users' => $users]);
+        }else {
             $url = "http://$_SERVER[HTTP_HOST]";
             header("Location:$url/login");
         }
@@ -164,7 +177,7 @@ class SecurityController extends DefaultController
 
     public function logout() {
 
-        if (isset($_COOKIE["user"])){
+        if (isset($_COOKIE["user"]) && $this->validate_cookie()){
             setcookie("user", '', time() - (180));
         }
 

@@ -10,8 +10,9 @@ class User
     private string $name;
     private string $surname;
     private int $phone;
-
     private int $role;
+    private string $created_at;
+
 
     public function __construct(string $email,string $password,string $name,string $surname, string $salt, int $role)
     {
@@ -21,6 +22,16 @@ class User
         $this->surname = $surname;
         $this->salt = $salt;
         $this->role = $role;
+    }
+
+    public function getCreatedAt(): string
+    {
+        return $this->created_at;
+    }
+
+    public function setCreatedAt(string $created_at): void
+    {
+        $this->created_at = $created_at;
     }
 
     public function getEmail(): string
