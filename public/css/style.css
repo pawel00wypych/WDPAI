@@ -232,12 +232,6 @@ input{
 
 }
 
-.no-valid{
-    border: 8px solid yellow;
-    border-radius: 1em;
-    box-shadow: 0 0 0.2em yellow;
-    outline: none;
-}
 
 
 button{
@@ -547,4 +541,12 @@ button:hover {
         border: 0.15em solid #000000;
         border-radius: 2em;
     }
+}
+
+.no-valid{
+
+    background: orangered;
+    border: 4px solid red;
+    box-shadow: 0 0 0.2em red;
+    border-radius: 10px;
 }

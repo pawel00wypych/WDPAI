@@ -50,7 +50,7 @@ function validatePassword() {
 
             markValidation(confirmedPasswordInput, condition);
         },
-        1000
+        500
     );
 }
 
