@@ -3,6 +3,8 @@
     <title>ADD WORKOUT</title>
     <link rel="stylesheet" type="text/css" href="public/css/style-app.css">
     <script src="https://kit.fontawesome.com/a3055391a0.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/public/js/addExercise.js" defer></script>
+
 </head>
 <body>
     <div class="top-container">
@@ -19,27 +21,22 @@
             <button onclick="document.location='summary'" class="top-nav-button">
                 <i class="fa-solid fa-chart-line"></i>
                 SUMMARY
-                <div class="hint">SUMMARY:<br/>- Workout Statistics<br/>- Excersise Statistics</div>
             </button>
             <button onclick="document.location='add_routine'" class="top-nav-button">
                 <i class="fa-solid fa-plus"></i>
                 ADD ROUTINE
-                <div class="hint">ADD ROUTINE:<br/>Add Scheme that contains<br/>- Name of Routine<br/>- Excersises<br/>- Description</div>
             </button>
             <button class="top-nav-button active">
                 <i class="fa-solid fa-plus"></i>
                 ADD WORKOUT
-                <div class="hint">ADD WORKOUT:<br/>- Add workout that you completed to history<br/>- Add workout from template, copy previous<br/>- Add details</div>
             </button>
             <button onclick="document.location='add_exercise'" class="top-nav-button">
                 <i class="fa-solid fa-plus"></i>
                 ADD EXERCISE
-                <div class="hint">ADD EXERCISE:<br/>- Add name<br/>- Choose category<br/>- Add description</div>
             </button>
             <button onclick="document.location='workout_history'" class="top-nav-button">
                 <i class="fa-solid fa-magnifying-glass"></i>
                 WORKOUT HISTORY
-                <div class="hint">WORKOUT HISTORY<br/>- Check previous workouts</div>
             </button>
             <button onclick="document.location='settings'" class="top-nav-button">
                 <i class="fa-solid fa-gear"></i>
@@ -67,34 +64,66 @@
             </div>
           </div>
 
-          <div class="main-mid workout">
 
-            <div id="template-or-nontemplate">New Training Or Use One From Template:</div>
-            <div id="template-buttons">
-                <button class="mid-cat-button workout">
-                    <i class="fa-solid fa-book-open"></i>
-                    Template
-                </button>
-                <button class="mid-cat-button workout">
-                    <i class="fa-solid fa-plus"></i>
-                    Add New
-                </button>
+
+        <div class="main-mid">
+            <div class="main-mid workout">
+                <div class="routine-exercises">
+                    exercise:
+                    <input  type="text" placeholder="Squat.." class="routine-text">
+                </div>
+                <div class="routine-exercises">
+                    description:
+                    <textarea  placeholder="Light training, intensity is 80% of B routine.." class="routine-text"></textarea>
+                </div>
             </div>
-            <div id="routine-exercises">
-                Add Exercises:
-                <textarea  placeholder="Squat.." class="routine-text"></textarea>
+            <div class="next-row"></div>
+            <div class="main-mid workout">
+                <div class="routine-exercises">
+                    weight:
+                    <input  type="number" placeholder="100.." class="routine-text">
+                </div>
+                <div class="routine-exercises">
+                    reps:
+                    <input  type="number" placeholder="10" class="routine-text">
+                </div>
+                <div class="routine-exercises">
+                    RPE:
+                    <input  type="number" placeholder="8" class="routine-text">
+                </div>
+                <div class="routine-exercises">
+                    RIR:
+                    <input type="number" placeholder="2" class="routine-text">
+                </div>
+                <div id="space"></div>
+                <div>
+                    <button id="save-set" class="mid-cat-button save">
+                        <i class="fa-solid fa-plus"></i>
+                    </button>
+                </div>
             </div>
-            <div id="routine-description">
-                Add Description:
-                <textarea  placeholder="Light training, intensity is 80% of B routine.." class="routine-text"></textarea>
-            </div>
-            <div id="routine-save">
+
+
+            <div class="main-mid workout">
+                <div></div>
                 <button class="mid-cat-button save">
                     <i class="fa-solid fa-book-open"></i>
-                    Save Routine
+                    Save exercise
                 </button>
+                <div></div>
             </div>
-          </div>
+            <div class="main-mid workout">
+                <div></div>
+                <button class="mid-cat-button save-workout">
+                    <i class="fa-solid fa-book-open"></i>
+                    Save workout
+                </button>
+                <div></div>
+            </div>
+        </div>
+
+
+
 
           <div class="main-bot">
             <div class="left-handler">

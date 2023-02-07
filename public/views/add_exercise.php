@@ -19,27 +19,22 @@
                     <button onclick="document.location='summary'" class="top-nav-button">
                         <i class="fa-solid fa-chart-line"></i>
                         SUMMARY
-                        <div class="hint">SUMMARY:<br/>- Workout Statistics<br/>- Excersise Statistics</div>
                     </button>
                     <button onclick="document.location='add_routine'" class="top-nav-button">
                         <i class="fa-solid fa-plus"></i>
                         ADD ROUTINE
-                        <div class="hint">ADD ROUTINE:<br/>Add Scheme that contains<br/>- Name of Routine<br/>- Excersises<br/>- Description</div>
                     </button>
                     <button onclick="document.location='add_workout'" class="top-nav-button">
                         <i class="fa-solid fa-plus"></i>
                         ADD WORKOUT
-                        <div class="hint">ADD WORKOUT:<br/>- Add workout that you completed to history<br/>- Add workout from template, copy previous<br/>- Add details</div>
                     </button>
                     <button class="top-nav-button active">
                         <i class="fa-solid fa-plus"></i>
                         ADD EXERCISE
-                        <div class="hint">ADD EXERCISE:<br/>- Add name<br/>- Choose category<br/>- Add description</div>
                     </button>
                     <button onclick="document.location='workout_history'" class="top-nav-button">
                         <i class="fa-solid fa-magnifying-glass"></i>
                         WORKOUT HISTORY
-                        <div class="hint">WORKOUT HISTORY<br/>- Check previous workouts</div>
                     </button>
                     <button onclick="document.location='settings'" class="top-nav-button">
                         <i class="fa-solid fa-gear"></i>

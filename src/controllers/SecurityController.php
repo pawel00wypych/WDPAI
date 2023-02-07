@@ -56,7 +56,7 @@ class SecurityController extends DefaultController
             $user->getEmail()." ".
             password_hash($this->secret_word, PASSWORD_BCRYPT);
 
-        setcookie($cookie_name, $cookie_value, time() + 180, "/");
+        setcookie($cookie_name, $cookie_value, time() + 1800, "/");
 
         $url = "http://$_SERVER[HTTP_HOST]";
         header("Location:$url/summary");
