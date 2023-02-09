@@ -165,14 +165,23 @@ class SecurityController extends DefaultController
     }
 
     public function getUsers() {
-        if (isset($_COOKIE['user']))
-        {
-            $users = $this->userRepository->getUsers();
-            $this->render('admin_settings', ['users' => $users]);
-        }else {
-            $url = "http://$_SERVER[HTTP_HOST]";
-            header("Location:$url/login");
-        }
+
+        $users= $this->userRepository->getUsers();
+        header('Content-type: application/json');
+        http_response_code(200);
+
+        echo json_encode($users);
+
+
+
+//        if (isset($_COOKIE['user']))
+//        {
+//            $users = $this->userRepository->getUsers();
+//            $this->render('admin_settings', ['users' => $users]);
+//        }else {
+//            $url = "http://$_SERVER[HTTP_HOST]";
+//            header("Location:$url/login");
+//        }
     }
 
     public function logout() {

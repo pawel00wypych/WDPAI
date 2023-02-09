@@ -129,13 +129,46 @@ main {
   justify-content: center;
 }
 
+.main-mid.admin{
+  border: none;
+  margin: 0 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  font-family: Verdana;
 
-#user {
+}
+
+
+.users {
+  /*! border: 1px solid; */
+  margin: 0 0;
+  /*! overflow-y: auto; */
+  /*! overflow-x: hidden; */
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  font-family: Verdana;
+}
+
+.user {
+  border: 3px solid;
+  display: flex;
+  flex-direction: row;
   text-align: center;
-  font-size: 20px;
-  background: #555555;
+  font-size: 12px;
+  margin: 1px 4px;
+  background: #D97474;
+}
+
+.user-field {
+  margin: 0.1em 0.5em;
+  /*! border: 2px solid black; */
+  padding: 1em 1em;
+  color: black;
+  -webkit-text-stroke: 0;
 }
 
 #mid-categories {
@@ -173,7 +206,7 @@ main {
   min-height: 80px;
   width: 20vw;
   min-width: 100px;
-  margin: 2vh 3vw;
+  margin: 1em 1em;
   filter: drop-shadow(0px 8px 4px rgba(0, 0, 0, 0.25));
 
   background: #CB3434;
@@ -184,29 +217,38 @@ main {
 
 .mid-cat-button.save{
   height: 4em;
-  /*! min-height: 80px; */
-  width: 4em;
-  /*! min-width: 100px; */
-  /*! margin: 2vh 3vw; */
+  width: 3em;
   filter: drop-shadow(0px 8px 4px rgba(0, 0, 0, 0.25));
 
   background: #CB3434;
   border: 2px solid #000000;
   border-radius: 50%;
-  font-size: 25px;
+  font-size: 20px;
 
   align-self: center;
 
 }
 
-.mid-cat-button.save-workout{
-  height: 4em;
+.mid-cat-button.save-exercise{
+  height: 5em;
   width: 8em;
   filter: drop-shadow(0px 8px 4px rgba(0, 0, 0, 0.25));
 
-  background: #f6c320;
+  background: #CB3434;
   border: 3px solid #000000;
-  border-radius: 5%;
+  border-radius: 2em;
+  font-size: 22px;
+  align-self: center;
+}
+
+.save-workout{
+  height: 5em;
+  width: 8em;
+  filter: drop-shadow(0px 8px 4px rgba(0, 0, 0, 0.25));
+
+  background: #CB3434;
+  border: 3px solid #000000;
+  border-radius: 2em;
   font-size: 25px;
 
   align-self: center;
@@ -331,9 +373,9 @@ h2 {
   border-radius: 10px;
   background: #6F1C1C;
 
-  padding: 0.5em;
+  padding: 0.5em 0.2em;
 
-  font-size: 18px;
+  font-size: 16px;
 }
 
 #routine-name {
@@ -505,6 +547,7 @@ input:focus ~ div{
     font-family: Verdana;
 
   }
+
 
   .mid-cat-button {
     height: 20vh;

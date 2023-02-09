@@ -3,6 +3,7 @@
     <title>WORKOUT HISTORY</title>
     <link rel="stylesheet" type="text/css" href="public/css/style-app.css">
     <script src="https://kit.fontawesome.com/a3055391a0.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/public/js/showUsers.js" defer></script>
 
 </head>
 <body>
@@ -63,26 +64,20 @@
         </div>
     </div>
     <form id="logoutForm" method="post" action="logout"></form>
-    <form id="getUsersForm" method="post" action="getUsers"></form>
 
     <div class="main-mid">
-        <button form="logoutForm" type="submit">
-            Logout
-        </button>
+        <div class="main-mid admin">
+            <button class="mid-cat-button" form="logoutForm" type="submit">
+                Logout
+            </button>
 
+            <button id="get-users" class="mid-cat-button">
+                Show Users
+            </button>
+        </div>
+        <div class="users">
 
-        <button form="getUsersForm" type="submit">
-            Show Users
-        </button>
-
-        <?php if(isset($users)) foreach ($users as $user): ?>
-            <div id="user">
-                <h1><?= $user->getName(); ?></h1>
-                <h1><?= $user->getSurname(); ?></h1>
-                <h1><?= $user->getEmail(); ?></h1>
-                <h1><?= $user->getCreatedAt(); ?></h1>
-            </div>
-        <?php endforeach; ?>
+        </div>
     </div>
     <div class="main-bot">
         <div class="left-handler">
@@ -104,3 +99,16 @@
 <div class="bot-container">
 </div>
 </body>
+
+<template id="user-template">
+    <div class = >
+        <div class="user">
+            <h1 id="field-1" class="user-field">name</h1>
+            <h1 id="field-2" class="user-field">surname</h1>
+            <h1 id="field-3" class="user-field">email</h1>
+            <h1 id="field-4" class="user-field">phone</h1>
+            <h1 id="field-5" class="user-field">role</h1>
+            <h1 id="field-6" class="user-field">createdAt</h1>
+        </div>
+    </div>
+</template>

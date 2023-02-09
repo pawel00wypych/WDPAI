@@ -3,7 +3,7 @@
     <title>ADD WORKOUT</title>
     <link rel="stylesheet" type="text/css" href="public/css/style-app.css">
     <script src="https://kit.fontawesome.com/a3055391a0.js" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="/public/js/addExercise.js" defer></script>
+    <script type="text/javascript" src="/public/js/addSet.js" defer></script>
 
 </head>
 <body>
@@ -69,56 +69,48 @@
         <div class="main-mid">
             <div class="main-mid workout">
                 <div class="routine-exercises">
-                    exercise:
-                    <input  type="text" placeholder="Squat.." class="routine-text">
+                    Workout:
+                    <input  type="text" placeholder="Heavy Push.." class="routine-text">
                 </div>
                 <div class="routine-exercises">
-                    description:
+                    Description:
                     <textarea  placeholder="Light training, intensity is 80% of B routine.." class="routine-text"></textarea>
                 </div>
-            </div>
-            <div class="next-row"></div>
-            <div class="main-mid workout">
-                <div class="routine-exercises">
-                    weight:
-                    <input  type="number" placeholder="100.." class="routine-text">
-                </div>
-                <div class="routine-exercises">
-                    reps:
-                    <input  type="number" placeholder="10" class="routine-text">
-                </div>
-                <div class="routine-exercises">
-                    RPE:
-                    <input  type="number" placeholder="8" class="routine-text">
-                </div>
-                <div class="routine-exercises">
-                    RIR:
-                    <input type="number" placeholder="2" class="routine-text">
-                </div>
-                <div id="space"></div>
-                <div>
-                    <button id="save-set" class="mid-cat-button save">
-                        <i class="fa-solid fa-plus"></i>
-                    </button>
-                </div>
-            </div>
-
-
-            <div class="main-mid workout">
-                <div></div>
-                <button class="mid-cat-button save">
-                    <i class="fa-solid fa-book-open"></i>
-                    Save exercise
-                </button>
-                <div></div>
-            </div>
-            <div class="main-mid workout">
-                <div></div>
-                <button class="mid-cat-button save-workout">
+                <button class="save-workout">
                     <i class="fa-solid fa-book-open"></i>
                     Save workout
                 </button>
-                <div></div>
+            </div>
+            <div class="mid-exercise">
+                <div id="next-row"></div>
+                <div class="main-mid workout">
+                    <div class="routine-exercises">
+                        exercise:
+                        <input  type="text" placeholder="Squat.." class="routine-text">
+                    </div>
+                    <div class="routine-exercises">
+                        weight:
+                        <input  type="number" placeholder="100.." class="routine-text">
+                    </div>
+                    <div class="routine-exercises">
+                        reps:
+                        <input  type="number" placeholder="10" class="routine-text">
+                    </div>
+                    <div class="routine-exercises">
+                        rpe:
+                        <input  type="number" placeholder="8" class="routine-text">
+                    </div>
+                    <div class="routine-exercises">
+                        rir:
+                        <input type="number" placeholder="2" class="routine-text">
+                    </div>
+                    <div id="space"></div>
+                    <div>
+                        <button id="save-set" class="mid-cat-button save">
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
 

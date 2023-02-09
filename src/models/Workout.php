@@ -19,6 +19,8 @@ class Workout
     private int $totalVolume;
 
     private int $totalReps;
+    private int $id;
+
 
     public function __construct(string $description, string $workoutName, int $totalTime, int $totalHSR, int $totalVolume, int $totalReps)
     {
@@ -28,6 +30,16 @@ class Workout
         $this->totalHSR = $totalHSR;
         $this->totalVolume = $totalVolume;
         $this->totalReps = $totalReps;
+    }
+
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    public function setId(int $id): void
+    {
+        $this->id = $id;
     }
 
     public function getDescription(): string

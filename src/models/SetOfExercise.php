@@ -16,6 +16,8 @@ class SetOfExercise
      * For example, 0 (nothing at all) would be how you feel when sitting in a chair; 10 (very, very heavy).
      */
     private int $rpe;
+    private int $id;
+
 
     public function __construct(int $reps, int $rir, int $rpe)
     {
@@ -29,6 +31,15 @@ class SetOfExercise
         return $this->reps;
     }
 
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    public function setId(int $id): void
+    {
+        $this->id = $id;
+    }
     public function setReps(int $reps): void
     {
         $this->reps = $reps;
