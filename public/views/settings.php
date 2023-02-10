@@ -65,9 +65,11 @@
     <form id="logoutForm" method="post" action="logout"></form>
 
     <div class="main-mid">
-        <button form="logoutForm" type="submit">
-            Logout
-        </button>
+        <div class="main-mid admin">
+            <button class="mid-cat-button" form="logoutForm" type="submit">
+                Logout
+            </button>
+        </div>
     </div>
 
     <div class="main-bot">

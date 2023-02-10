@@ -16,6 +16,7 @@ Routing::get('add_routine', 'SecurityController');
 Routing::get('workout_history', 'SecurityController');
 Routing::get('settings', 'SecurityController');
 Routing::get('getUsers', 'SecurityController');
+Routing::get('getWorkouts', 'WorkoutController');
 Routing::post('logout', 'SecurityController');
 
 Routing::run($path);

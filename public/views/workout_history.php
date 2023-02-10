@@ -3,6 +3,7 @@
     <title>WORKOUT HISTORY</title>
     <link rel="stylesheet" type="text/css" href="public/css/style-app.css">
     <script src="https://kit.fontawesome.com/a3055391a0.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/public/js/showWorkouts.js" defer></script>
 
 </head>
 <body>
@@ -63,7 +64,11 @@
             </div>
           </div>
 
-          <div class="main-mid">mid</div>
+          <div class="main-mid">
+              <div class="main-mid history">
+
+              </div>
+          </div>
 
           <div class="main-bot">
             <div class="left-handler">
@@ -85,3 +90,86 @@
     <div class="bot-container">
     </div>
 </body>
+
+<template id="history-template">
+    <div class="line"></div>
+    <div class="main-mid training">
+        <h1 class="training header-main">Workout</h1>
+        <div class="headers">
+            <div  class="property name">
+                <h1 id="training-name-h1" class="training header name">name</h1>
+                <div id="text1">A</div>
+            </div>
+            <div class="property">
+                <h1 class="training header">date</h1>
+                <div id="text2">12.02.2023</div>
+            </div>
+            <div class="property">
+                <h1 class="training header">total-time</h1>
+                <div id="text3">2:30</div>
+            </div>
+            <div class="property">
+                <h1 class="training header">total-hsr</h1>
+                <div id="text4">42</div>
+            </div>
+            <div class="property">
+                <h1 class="training header">total-volume</h1>
+                <div id="text5">4320 kg</div>
+            </div>
+            <div class="property">
+                <h1 class="training header">total-reps</h1>
+                <div id="text6">82</div>
+            </div>
+        </div>
+        <h1 class="training header-main">Exercises:</h1>
+        <div class="training body">
+            <div class="exercise">
+                <div class="property name">
+                    <h1 class="training header name">name</h1>
+                    Squat
+                </div>
+                <div class="property">
+                    <h1 class="training header">description</h1>
+                    hard...
+                </div>
+                <div class="property">
+                    <h1 class="training header">total-hsr</h1>
+                    2:30
+                </div>
+                <div class="property">
+                    <h1 class="training header">total-reps</h1>
+                    42
+                </div>
+                <div class="property">
+                    <h1 class="training header">total-volume</h1>
+                    4320 kg
+                </div>
+            </div>
+            <div class="sets">
+                <div class="sets set">
+                    <div class="set-property name">
+                        <h1 class="training set-header name">Set:</h1>
+                        1
+                    </div>
+                    <div class="set-property">
+                        <h1 class="training set-header">Weight:</h1>
+                        100 kg
+                    </div>
+                    <div class="set-property">
+                        <h1 class="training set-header">Reps:</h1>
+                        8
+                    </div>
+                    <div class="set-property">
+                        <h1 class="training set-header">RIR:</h1>
+                        2
+                    </div>
+                    <div class="set-property">
+                        <h1 class="training set-header">RPE:</h1>
+                        8
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="line"></div>
+</template>

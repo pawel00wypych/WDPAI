@@ -13,8 +13,10 @@ class User
     private int $role;
     private string $created_at;
 
+    private int $id;
 
-    public function __construct(string $email,string $password,string $name,string $surname, string $salt, int $role)
+
+    public function __construct(string $email,string $password,string $name,string $surname, string $salt, int $role, int $id)
     {
         $this->email = $email;
         $this->password = $password;
@@ -22,6 +24,17 @@ class User
         $this->surname = $surname;
         $this->salt = $salt;
         $this->role = $role;
+        $this->id = $id;
+    }
+
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    public function setId(int $id): void
+    {
+        $this->id = $id;
     }
 
     public function getCreatedAt(): string

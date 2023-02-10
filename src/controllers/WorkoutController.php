@@ -15,6 +15,7 @@ class WorkoutController extends DefaultController
     {
         parent::__construct();
         $this->workoutRepository = new WorkoutRepository();
+        $this->userRepository = new UserRepository();
     }
 
 
@@ -52,5 +53,18 @@ class WorkoutController extends DefaultController
         }
 
         return true;
+    }
+
+    public function getWorkouts()
+    {
+        list(,$email,) = explode(' ',$_COOKIE['user']);
+        $user = $this->userRepository->getUser($email);
+
+        $workouts = $this->workoutRepository->getWorkouts($user);
+        header('Content-type: application/json');
+        http_response_code(200);
+
+        echo json_encode($workouts);
+
     }
 }
