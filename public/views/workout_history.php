@@ -126,46 +126,50 @@
             <div class="exercise">
                 <div class="property name">
                     <h1 class="training header name">name</h1>
-                    Squat
+                    <div id="text7">Squat</div>
                 </div>
                 <div class="property">
                     <h1 class="training header">description</h1>
-                    hard...
+                    <div id="text8">hard...</div>
                 </div>
                 <div class="property">
                     <h1 class="training header">total-hsr</h1>
-                    2:30
+                    <div id="text9">2:30</div>
                 </div>
                 <div class="property">
                     <h1 class="training header">total-reps</h1>
-                    42
+                    <div id="text10">42</div>
                 </div>
                 <div class="property">
                     <h1 class="training header">total-volume</h1>
-                    4320 kg
+                    <div id="text11">4320 kg</div>
+                </div>
+                <div class="property">
+                    <h1 class="training header">rest</h1>
+                    <div id="text12">1:00</div>
                 </div>
             </div>
             <div class="sets">
                 <div class="sets set">
                     <div class="set-property name">
                         <h1 class="training set-header name">Set:</h1>
-                        1
+                        <div id="text13">1</div>
                     </div>
                     <div class="set-property">
                         <h1 class="training set-header">Weight:</h1>
-                        100 kg
+                        <div id="text14">100 kg</div>
                     </div>
                     <div class="set-property">
                         <h1 class="training set-header">Reps:</h1>
-                        8
+                        <div id="text15">8</div>
                     </div>
                     <div class="set-property">
                         <h1 class="training set-header">RIR:</h1>
-                        2
+                        <div id="text16">2</div>
                     </div>
                     <div class="set-property">
                         <h1 class="training set-header">RPE:</h1>
-                        8
+                        <div id="text17">8</div>
                     </div>
                 </div>
             </div>

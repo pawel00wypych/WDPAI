@@ -67,4 +67,30 @@ class WorkoutController extends DefaultController
         echo json_encode($workouts);
 
     }
+
+    public function getExercises()
+    {
+        list(,$email,) = explode(' ',$_COOKIE['user']);
+        $user = $this->userRepository->getUser($email);
+
+        $exercises = $this->workoutRepository->getExercises($user);
+        header('Content-type: application/json');
+        http_response_code(200);
+
+        echo json_encode($exercises);
+
+    }
+
+    public function getSetsOfExercise()
+    {
+        list(,$email,) = explode(' ',$_COOKIE['user']);
+        $user = $this->userRepository->getUser($email);
+
+        $sets = $this->workoutRepository->getSets($user);
+        header('Content-type: application/json');
+        http_response_code(200);
+
+        echo json_encode($sets);
+
+    }
 }

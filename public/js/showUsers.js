@@ -13,7 +13,7 @@ function showUsers() {
 }
 
 function loadUsers(users) {
-
+    console.log(users);
     users.forEach(user => {
         console.log(user);
         showUser(user);
