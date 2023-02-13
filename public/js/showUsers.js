@@ -7,15 +7,13 @@ function showUsers() {
         return response.json();
     }).then(function (users) {
         usersContainer.innerHTML = "";
-        loadUsers(users)
+        loadUsers(users);
     });
 
 }
 
 function loadUsers(users) {
-    console.log(users);
     users.forEach(user => {
-        console.log(user);
         showUser(user);
     });
 }

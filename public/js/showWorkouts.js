@@ -1,6 +1,7 @@
 const workoutsContainer = document.querySelector(".main-mid.history");
-const template = document.querySelector("#history-template");
-const clone = template.content.cloneNode(true);
+const workoutTemplate = document.querySelector("#workout-template");
+const exerciseTemplate = document.querySelector("#exercise-template");
+const setTemplate = document.querySelector("#set-template");
 
 function showWorkouts() {
 
@@ -17,10 +18,7 @@ function showWorkouts() {
                 .then(function (response){
                 return response.json();
             }).then(function (sets) {
-                console.log(workouts);
-                console.log(exercises);
-                console.log(sets);
-                loadWorkouts(workouts, exercises, sets)
+                loadWorkouts(workouts, exercises, sets);
             });
         });
     });
@@ -36,20 +34,20 @@ function loadWorkouts(workouts, exercises, sets) {
 
 function showWorkout(workout) {
 
-    const div = clone.querySelector(".main-mid.training");
-    div.id = workout["id_user"];
+    const clone = workoutTemplate.content.cloneNode(true);
+
     const name = clone.querySelector("#text1");
-    name.innerHTML = workout["workout_name"]
+    name.innerHTML = workout["workout_name"];
     const date = clone.querySelector("#text2");
-    date.innerHTML = workout["created_at"]
+    date.innerHTML = workout["created_at"];
     const duration = clone.querySelector("#text3");
-    duration.innerHTML = workout["total_time"]
+    duration.innerHTML = workout["total_time"];
     const hsr = clone.querySelector("#text4");
-    hsr.innerHTML = workout["total_hsr"]
+    hsr.innerHTML = workout["total_hsr"];
     const volume = clone.querySelector("#text5");
-    volume.innerHTML = workout["total_volume"]
+    volume.innerHTML = workout["total_volume"];
     const reps = clone.querySelector("#text6");
-    reps.innerHTML = workout["total_reps"]
+    reps.innerHTML = workout["total_reps"];
 
     workoutsContainer.appendChild(clone);
 }
@@ -57,64 +55,62 @@ function showWorkout(workout) {
 function loadExercises(workout, exercises, sets) {
 
     exercises.forEach(exercise => {
-        showExercise(workout, exercise, sets);
-        loadSets(exercise, sets);
+        if(workout["id_exercise"] === exercise["id_exercise"]) {
+            showExercise(workout, exercise);
+            loadSets(exercise, sets);
+        }
     });
 }
 
 
 function showExercise(workout, exercise) {
 
-    if(workout["id_exercise"] === exercise["id_exercise"]) {
+        const clone = exerciseTemplate.content.cloneNode(true);
+
         const name = clone.querySelector("#text7");
-        name.innerHTML = exercise["exercise_name"]
+        name.innerHTML = exercise["exercise_name"];
         const desc = clone.querySelector("#text8");
-        desc.innerHTML = exercise["description"]
+        desc.innerHTML = exercise["description"];
         const hsr = clone.querySelector("#text9");
-        hsr.innerHTML = exercise["total_hsr"]
+        hsr.innerHTML = exercise["total_hsr"];
         const reps = clone.querySelector("#text10");
-        reps.innerHTML = exercise["total_reps"]
+        reps.innerHTML = exercise["total_reps"];
         const volume = clone.querySelector("#text11");
-        volume.innerHTML = exercise["total_volume"]
+        volume.innerHTML = exercise["total_volume"];
         const brk = clone.querySelector("#text12");
-        brk.innerHTML = exercise["break"]
+        brk.innerHTML = exercise["break"];
 
         workoutsContainer.appendChild(clone);
-    }
 }
 
 function loadSets(exercise, sets) {
     let id = 0;
-    // console.log(sets)
-    // sets.forEach(set => {
-    //     showSets(exercise, set, id);
-    // });
-
-    while(id < sets.length) {
-        showSets(exercise, sets[id], id);
-        id++
-    }
+     sets.forEach(set => {
+         if(exercise["id_exercise"] === set["id_exercise"]) {
+             showSets(exercise, set, id);
+             id++;
+         }
+     });
 }
 
 
 function showSets(exercise, set, id) {
 
-    if(exercise["id_exercise"] === set["id_exercise"]) {
+        const clone = setTemplate.content.cloneNode(true);
 
         const setNumber = clone.querySelector("#text13");
-        setNumber.innerHTML = id
+        setNumber.innerHTML = id + 1;
         const weight = clone.querySelector("#text14");
-        weight.innerHTML = set["weight"]
+        weight.innerHTML = set["weight"];
         const reps = clone.querySelector("#text15");
-        reps.innerHTML = set["reps"]
+        reps.innerHTML = set["reps"];
         const rir = clone.querySelector("#text16");
-        rir.innerHTML = set["rir"]
+        rir.innerHTML = set["rir"];
         const rpe = clone.querySelector("#text17");
-        rpe.innerHTML = set["rpe"]
+        rpe.innerHTML = set["rpe"];
 
 
         workoutsContainer.appendChild(clone);
-    }
 }
 
 document.addEventListener('readystatechange', event => {
