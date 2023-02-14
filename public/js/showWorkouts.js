@@ -1,4 +1,4 @@
-const workoutsContainer = document.querySelector(".main-mid.history");
+const workoutsContainer = document.querySelector(".main-mid.training");
 const workoutTemplate = document.querySelector("#workout-template");
 const exerciseTemplate = document.querySelector("#exercise-template");
 const setTemplate = document.querySelector("#set-template");
