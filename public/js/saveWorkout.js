@@ -14,61 +14,62 @@ function saveWorkout() {
     let totalRepsOfWorkout = 0;
     let totalHSROfWorkout = 0;
 
-    const sets = [];
-    const exercises = [{
-        name: "",
-        total_hsr: 0,
-        total_reps: 0,
-        total_volume: 0,
-        break: ""
-    }];
+    let sets = [];
+    let exercises = [];
+
     let names = new Map();
+    let k = 0;
 
     for(let i = 0; i < exerciseName.length ; i++) {
-        let k = 0;
-        if(!names.has(exerciseName[i].name))
+
+        let vol = reps[i].value * weight[i].value * 1;
+        let rps = reps[i].value * 1;
+        let hsr = getHSR(rir[i].value, reps[i].value) * 1;
+        let j = 0;
+
+        if(!names.has(exerciseName[i].value.toLowerCase()))
         {
-            names.set(exerciseName[i].name, k);
+            names.set(exerciseName[i].value.toLowerCase(), k++);
 
-            exercises[k++] =  {
-                name: exerciseName[i].name,
-                total_hsr: getHSR(rir[i].value, reps[i].value) * 1,
-                total_reps: reps[i].value * 1,
-                total_volume: reps[i].value * weight[i].value * 1,
+            exercises.push({
+                exercise_name: exerciseName[i].value.toLowerCase(),
+                total_hsr: hsr,
+                total_reps: rps,
+                total_volume: vol,
                 break: rest[i].value
-            }
+            });
         }else {
-            let j = names.get(exerciseName[i].name);
-            console.log(j);
+            j = parseInt(names.get(exerciseName[i].value));
 
-            let temp = exercises[j].name;
+            let temp = exercises[j].exercise_name.toLowerCase();
             let tempHsr = exercises[j].total_hsr;
             let tempReps = exercises[j].total_reps;
             let tempVolume = exercises[j].total_volume;
             exercises[j] = {
-                name: temp,
-                total_hsr: tempHsr + getHSR(rir[i].value, reps[i].value) * 1,
-                total_reps: tempReps + reps[i].value * 1,
-                total_volume: tempVolume + reps[i].value * weight[i].value * 1,
+                exercise_name: temp,
+                total_hsr: tempHsr + hsr,
+                total_reps: tempReps + rps,
+                total_volume: tempVolume + vol,
                 break: rest[i].value
             }
         }
+
         sets.push({
-            name: exerciseName[i].value,
+            exercise_name: exerciseName[i].value.toLowerCase(),
             weight: weight[i].value,
-            reps: reps[i].value,
+            reps: rps,
             rpe: rpe[i].value,
             rir: rir[i].value,
             rest: rest[i].value
         });
-        totalVolumeOfWorkout += reps[i].value * weight[i].value * 1;
-        totalRepsOfWorkout += reps[i].value * 1;
-        totalHSROfWorkout += getHSR(rir[i].value, reps[i].value) * 1;
 
+        totalVolumeOfWorkout += vol;
+        totalRepsOfWorkout += rps;
+        totalHSROfWorkout += hsr;
     }
 
     const workout = {
-       workout_name: workoutName,
+       workout_name: workoutName.toLowerCase(),
        description:  workoutDescription,
         total_time: totalTime,
         total_hsr: totalHSROfWorkout,
@@ -76,22 +77,45 @@ function saveWorkout() {
         total_reps: totalRepsOfWorkout
     };
 
-    console.log(sets);
-    console.log(exercises);
-    console.log(workout);
+    const save = {
+        workout: workout,
+        exercises: exercises,
+        sets: sets
+    }
+
+    fetch("/saveWorkout", {
+        method: "POST",
+        credentials: "same-origin",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(save)
+    })
+        .then(function (response) {
+            return response;
+        }).then(function (result) {
+        if (result == null)
+            alert("ERROR IN CREATING TRAINING SESSION. PLEASE RELOAD");
+    });
+
 }
 
 function getHSR(rir, reps) {
+    rir = rir * 1;
+    reps = reps * 1;
     let hsr;
-    if(rir >= 5 || reps < rir) {
+    if(rir >= 5 || reps <= rir) {
         hsr = 0;
     }
     else {
-        if(reps > 5)
+        if(reps > 5) {
             hsr = 5 - rir;
-        else
+        }
+        else {
             hsr = reps - rir;
+        }
     }
+
     return hsr;
 }
 

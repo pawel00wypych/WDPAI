@@ -18,24 +18,33 @@ class WorkoutController extends DefaultController
         $this->userRepository = new UserRepository();
     }
 
+    public function saveWorkout() {
 
-    public function add_workout() {
+        list(,$email,) = explode(' ',$_COOKIE['user']);
+        $user = $this->userRepository->getUser($email);
 
-        if ($this->isPost() && $this->validate($_POST[])) {
+        $contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
+        if ($contentType == "application/json") {
 
-             $this->render('workout_history', [
-                'messages' => $this->message,
-                'projects' => $this->workoutRepository->getWorkouts()
-            ]);
+            $body = trim(file_get_contents("php://input"));
+
+            $result = $this->workoutRepository->saveWorkout($body, $user);
+
+            header('Content-type: application/json');
+            http_response_code(200);
+            echo json_encode($result);
         }
 
         $this->render('add_workout');
 
     }
 
+    public function add_workout() {
+
+        $this->render('add_workout');
+    }
+
     public function add_exercise() {
-
-
 
         $this->render('add_exercise');
     }
