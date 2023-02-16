@@ -41,19 +41,22 @@ function saveWorkout() {
                 break: rest[i].value
             });
         }else {
-            j = parseInt(names.get(exerciseName[i].value));
+            j = parseInt(names.get(exerciseName[i].value.toLowerCase()));
 
             let temp = exercises[j].exercise_name.toLowerCase();
-            let tempHsr = exercises[j].total_hsr;
-            let tempReps = exercises[j].total_reps;
-            let tempVolume = exercises[j].total_volume;
+            let tempHsr = exercises[j].total_hsr + hsr;
+            let tempReps = exercises[j].total_reps + rps;
+            let tempVolume = exercises[j].total_volume + vol;
+
+
             exercises[j] = {
                 exercise_name: temp,
-                total_hsr: tempHsr + hsr,
-                total_reps: tempReps + rps,
-                total_volume: tempVolume + vol,
+                total_hsr: tempHsr,
+                total_reps: tempReps,
+                total_volume: tempVolume,
                 break: rest[i].value
             }
+
         }
 
         sets.push({
