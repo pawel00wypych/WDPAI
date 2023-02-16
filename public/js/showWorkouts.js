@@ -45,9 +45,11 @@ function showWorkout(workout) {
     const hsr = clone.querySelector("#text4");
     hsr.innerHTML = workout["total_hsr"];
     const volume = clone.querySelector("#text5");
-    volume.innerHTML = workout["total_volume"];
+    volume.innerHTML = workout["total_volume"] + " kg";
     const reps = clone.querySelector("#text6");
     reps.innerHTML = workout["total_reps"];
+    const bw = clone.querySelector("#text61");
+    bw.innerHTML = workout["body_weight"];
 
     workoutsContainer.appendChild(clone);
 }
@@ -76,7 +78,7 @@ function showExercise(workout, exercise) {
         const reps = clone.querySelector("#text10");
         reps.innerHTML = exercise["total_reps"];
         const volume = clone.querySelector("#text11");
-        volume.innerHTML = exercise["total_volume"];
+        volume.innerHTML = exercise["total_volume"] + " kg";
         const brk = clone.querySelector("#text12");
         brk.innerHTML = exercise["break"];
 
@@ -101,7 +103,7 @@ function showSets(exercise, set, id) {
         const setNumber = clone.querySelector("#text13");
         setNumber.innerHTML = id + 1;
         const weight = clone.querySelector("#text14");
-        weight.innerHTML = set["weight"];
+        weight.innerHTML = set["weight"] + " kg";
         const reps = clone.querySelector("#text15");
         reps.innerHTML = set["reps"];
         const rir = clone.querySelector("#text16");

@@ -3,6 +3,7 @@
     <title>SUMMARY</title>
     <link rel="stylesheet" type="text/css" href="public/css/style-app.css">
     <script src="https://kit.fontawesome.com/a3055391a0.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/public/js/summary.js" defer></script>
 </head>
 <body>
     <div class="top-container">
@@ -63,18 +64,9 @@
           </div>
 
           <div class="main-mid">
-            <div id="message">
-                You last worked out
-                12 days ago on
-                friday, October 15, 2022
-            </div>
-            <div class="line"></div>
-            <div id="message">
-                Choose Period:
-            </div>
-            <input id="summary-period" type="date" value="2022-12-08" min="2022-10-01">
-            <div class="line"></div>
-            <div id="trainings-total">Trainings completed: 123</div>
+              <div id="summary">
+
+              </div>
           </div>
 
           <div class="main-bot">
@@ -97,3 +89,33 @@
     <div class="bot-container">
     </div>
 </body>
+
+<template id="summary-template">
+    <div class="summary-container">
+        <div id="last-training">
+            <div id="last-training-1"></div>
+            <div id="last-training-2"></div>
+            <div id="last-training-3"></div>
+            <div id="last-training-4"></div>
+            <div id="last-training-5"></div>
+            <div id="last-training-6"></div>
+            <div id="last-training-7"></div>
+            <div id="last-training-8"></div>
+        </div>
+    </div>
+    <div class="summary-container">
+        <div id="total-workouts">total workouts</div>
+    </div>
+    <div class="summary-container">
+        <div id="total-volume">total volume</div>
+    </div>
+    <div class="summary-container">
+        <div id="total-reps">total reps</div>
+    </div>
+    <div class="summary-container">
+        <div id="total-hsr">total hsr</div>
+    </div>
+    <div class="summary-container">
+        <div id="chart">chart</div>
+    </div>
+</template>

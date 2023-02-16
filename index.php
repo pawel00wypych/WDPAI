@@ -19,6 +19,7 @@ Routing::get('getUsers', 'SecurityController');
 Routing::get('getWorkouts', 'WorkoutController');
 Routing::get('getExercises', 'WorkoutController');
 Routing::get('getSetsOfExercise', 'WorkoutController');
+Routing::get('getStatistics', 'WorkoutController');
 Routing::post('saveWorkout', 'WorkoutController');
 Routing::post('logout', 'SecurityController');
 

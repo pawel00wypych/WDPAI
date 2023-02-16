@@ -102,4 +102,16 @@ class WorkoutController extends DefaultController
         echo json_encode($sets);
 
     }
+
+    public function getStatistics()
+    {
+        list(,$email,) = explode(' ',$_COOKIE['user']);
+        $user = $this->userRepository->getUser($email);
+
+        $stats = $this->workoutRepository->getStatistics($user);
+        header('Content-type: application/json');
+        http_response_code(200);
+
+        echo json_encode($stats);
+    }
 }

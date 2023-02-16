@@ -4,6 +4,8 @@ function saveWorkout() {
     const workoutName = document.getElementById("workout-name").value;
     const workoutDescription = document.getElementById("workout-description").value;
     const totalTime = document.getElementById("workout-time").value;
+    const bw = document.getElementById("workout-bw").value;
+
     const exerciseName = Array.prototype.slice.call(document.getElementsByName("name"));
     const weight = Array.prototype.slice.call(document.getElementsByName("weight"));
     const reps = Array.prototype.slice.call(document.getElementsByName("reps"));
@@ -74,7 +76,8 @@ function saveWorkout() {
         total_time: totalTime,
         total_hsr: totalHSROfWorkout,
         total_volume: totalVolumeOfWorkout,
-        total_reps: totalRepsOfWorkout
+        total_reps: totalRepsOfWorkout,
+        body_weight: bw
     };
 
     const save = {
@@ -94,8 +97,11 @@ function saveWorkout() {
         .then(function (response) {
             return response;
         }).then(function (result) {
-        if (result == null)
+        if (result.body)
+            window.location.replace("/workout_history");
+        else
             alert("ERROR IN CREATING TRAINING SESSION. PLEASE RELOAD");
+
     });
 
 }

@@ -31,7 +31,7 @@ class WorkoutRepository extends Repository
         $stmt->bindParam(':id_user', $id);
         $stmt->execute();
 
-        return $stmt->fetchAll(PDO::FETCH_ASSOC,);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function getSets($user)
@@ -56,8 +56,8 @@ class WorkoutRepository extends Repository
     {
         $decoded = json_decode($body, true);
         $stmt = $this->database->connect()->prepare('
-            INSERT INTO workout(id_user, description, workout_name, total_time, total_hsr, total_volume, total_reps, created_at) 
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?) RETURNING id_workout
+            INSERT INTO workout(id_user, description, workout_name, total_time, total_hsr, total_volume, total_reps, created_at, body_weight) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING id_workout
         ');
 
 
@@ -72,7 +72,8 @@ class WorkoutRepository extends Repository
                 $decoded["workout"]["total_hsr"],
                 $decoded["workout"]["total_volume"],
                 $decoded["workout"]["total_reps"],
-                $created->format("Y-m-d")
+                $created->format("Y-m-d"),
+                $decoded["workout"]["body_weight"]
             ]);
 
             $workoutID = $stmt->fetchColumn();
@@ -128,5 +129,47 @@ class WorkoutRepository extends Repository
         } catch (Exception $e) {
             return $e;
         }
+    }
+
+    public function getStatistics(?User $user)
+    {
+
+
+        $result = array(4);
+
+        $stmt = $this->database->connect()->prepare('
+            SELECT *
+            FROM workout WHERE (SELECT MAX(created_at) FROM workout WHERE id_user = :id_user) = created_at                     
+              
+        ');
+
+        $stmt2 = $this->database->connect()->prepare('
+            SELECT COUNT(*) 
+            FROM workout WHERE id_user = :id_user;                    
+              
+        ');
+
+        $stmt3 = $this->database->connect()->prepare('
+            SELECT SUM (total_volume) AS volume , SUM (total_reps) AS reps, SUM (total_hsr) AS hsr
+            FROM workout
+            WHERE  id_user = :id_user;                    
+                          
+        ');
+
+
+        $id = $user->getId();
+        $stmt->bindParam(':id_user', $id);
+        $stmt2->bindParam(':id_user', $id);
+        $stmt3->bindParam(':id_user', $id);
+
+        $stmt->execute();
+        $stmt2->execute();
+        $stmt3->execute();
+
+        $result[0] = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $result[1] = $stmt2->fetchAll(PDO::FETCH_ASSOC);
+        $result[2] = $stmt3->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result;
     }
 }

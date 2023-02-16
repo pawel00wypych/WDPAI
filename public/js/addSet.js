@@ -70,6 +70,7 @@ function addSet() {
         this.parentElement.parentElement.remove();
     })
     const div5 = document.createElement("div");
+    div5.className = "routine-exercises";
     div5.appendChild(deleteButton);
 
     const icon = document.createElement("i");
@@ -81,6 +82,7 @@ function addSet() {
     add.appendChild(icon);
     add.addEventListener("click", addSet)
     const div6 = document.createElement("div");
+    div6.className = "routine-exercises";
     div6.appendChild(add);
 
     div.appendChild(div0)

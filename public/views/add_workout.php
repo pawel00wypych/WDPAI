@@ -78,6 +78,10 @@
                     <textarea id="workout-description"  placeholder="Light training, intensity is 80% of B routine.." class="routine-text"></textarea>
                 </div>
                 <div  class="routine-exercises">
+                    Body Weight:
+                    <input id="workout-bw"  type="number" class="routine-text">
+                </div>
+                <div  class="routine-exercises">
                     Total Time:
                     <input id="workout-time"  type="time" class="routine-text">
                 </div>

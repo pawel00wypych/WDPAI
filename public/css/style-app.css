@@ -106,7 +106,7 @@ main {
 
 .main-mid {
   background: #A44D4D;
-  height: auto;
+  height: 60vh;
   margin: 0 5.2vw;
   min-height: 200px;
   border: 1px solid #000000;
@@ -228,6 +228,7 @@ main {
   flex-direction: row;
   font-family: Verdana;
   justify-content: center;
+  height: auto;
 }
 
 .main-mid.admin{

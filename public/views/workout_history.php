@@ -122,6 +122,10 @@
             <h1 class="training header">total-reps</h1>
             <div id="text6">82</div>
         </div>
+        <div class="property">
+            <h1 class="training header">body-weight</h1>
+            <div id="text61">82</div>
+        </div>
     </div>
     <h1 class="training header-main">Exercises:</h1>
 </template>
