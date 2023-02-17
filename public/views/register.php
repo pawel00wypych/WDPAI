@@ -34,7 +34,6 @@
                             <div id="email-1">
                                 EMAIL:
                             </div>
-                            
                             <input name="email" type="email" placeholder="email@email.com">
                             <div id="password-1">
                                 PASSWORD:
@@ -44,22 +43,18 @@
                                 CONFIRM PASSWORD:
                             </div>
                             <input name="confirmedPassword" type="password" placeholder="password">
-                            <div></div>
-                            <div>
+                            <div id="password-1">
                             NAME:
                             </div>
                             <input name="name" type="text" placeholder="name">
-                            <div></div>
-                            <div>
+                            <div id="password-1">
                             SURNAME:
                             </div>
                             <input name="surname" type="text" placeholder="surname">
-                            <div></div>
-                            <div>
+                            <div id="password-1">
                             PHONE:
                             </div>
                             <input name="phone" type="tel" placeholder="123456789">
-                            <div></div>
                             <button type="submit">
                                 REGISTER
                             </button>
