@@ -62,16 +62,16 @@
             </div>
           </div>
 
-          <div class="main-mid routine">
-                <div id="routine-name">
+          <div class="main-mid">
+                <div class="routine">
                     Add Name Of The Routine:
                     <textarea  placeholder="A.." class="routine-text"></textarea>
                 </div>
-                <div id="routine-exercises">
+                <div class="routine">
                     Add Exercises:
                     <textarea  placeholder="Squat.." class="routine-text"></textarea>
                 </div>
-                <div id="routine-description">
+                <div class="routine">
                     Add Description:
                     <textarea  placeholder="Light training, intensity is 80% of B routine.." class="routine-text"></textarea>
                 </div>

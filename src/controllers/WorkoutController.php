@@ -16,102 +16,115 @@ class WorkoutController extends DefaultController
         parent::__construct();
         $this->workoutRepository = new WorkoutRepository();
         $this->userRepository = new UserRepository();
+        $this->security = new SecurityController();
     }
 
     public function saveWorkout() {
 
-        list(,$email,) = explode(' ',$_COOKIE['user']);
-        $user = $this->userRepository->getUser($email);
+        if($this->security->validate_cookie()) {
 
-        $contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
-        if ($contentType == "application/json") {
+            list(, $email,) = explode(' ', $_COOKIE['user']);
+            $user = $this->userRepository->getUser($email);
 
-            $body = trim(file_get_contents("php://input"));
+            $contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
+            if ($contentType == "application/json") {
 
-            $result = $this->workoutRepository->saveWorkout($body, $user);
+                $body = trim(file_get_contents("php://input"));
 
-            header('Content-type: application/json');
-            http_response_code(200);
-            echo json_encode($result);
+                $result = $this->workoutRepository->saveWorkout($body, $user);
+
+                header('Content-type: application/json');
+                http_response_code(200);
+                echo json_encode($result);
+            }
+
+            $this->render('add_workout');
         }
-
-        $this->render('add_workout');
-
     }
 
     public function add_workout() {
-
-        $this->render('add_workout');
+        if($this->security->validate_cookie()) {
+            $this->render('add_workout');
+        }
     }
 
     public function add_exercise() {
+        if($this->security->validate_cookie()) {
 
-        $this->render('add_exercise');
-    }
-
-    private function validate($post): bool
-    {
-        if (!isset($post['workout_name'])) {
-            $this->message[] = 'Workout name can\'t be null';
-            return false;
+            $this->render('add_exercise');
         }
-
-        if (strlen($post['workout_name']) > 0) {
-            $this->message[] = 'Workout name can\'t be empty';
-            return false;
-        }
-
-        return true;
     }
 
     public function getWorkouts()
     {
-        list(,$email,) = explode(' ',$_COOKIE['user']);
-        $user = $this->userRepository->getUser($email);
+        if($this->security->validate_cookie()) {
 
-        $workouts = $this->workoutRepository->getWorkouts($user);
-        header('Content-type: application/json');
-        http_response_code(200);
+            list(, $email,) = explode(' ', $_COOKIE['user']);
+            $user = $this->userRepository->getUser($email);
 
-        echo json_encode($workouts);
+            $workouts = $this->workoutRepository->getWorkouts($user);
+            header('Content-type: application/json');
+            http_response_code(200);
 
+            echo json_encode($workouts);
+        }
     }
 
     public function getExercises()
     {
-        list(,$email,) = explode(' ',$_COOKIE['user']);
-        $user = $this->userRepository->getUser($email);
+        if($this->security->validate_cookie()) {
 
-        $exercises = $this->workoutRepository->getExercises($user);
-        header('Content-type: application/json');
-        http_response_code(200);
+            list(, $email,) = explode(' ', $_COOKIE['user']);
+            $user = $this->userRepository->getUser($email);
 
-        echo json_encode($exercises);
+            $exercises = $this->workoutRepository->getExercises($user);
+            header('Content-type: application/json');
+            http_response_code(200);
 
+            echo json_encode($exercises);
+        }
     }
 
     public function getSetsOfExercise()
     {
-        list(,$email,) = explode(' ',$_COOKIE['user']);
-        $user = $this->userRepository->getUser($email);
+        if($this->security->validate_cookie()) {
 
-        $sets = $this->workoutRepository->getSets($user);
-        header('Content-type: application/json');
-        http_response_code(200);
+            list(, $email,) = explode(' ', $_COOKIE['user']);
+            $user = $this->userRepository->getUser($email);
 
-        echo json_encode($sets);
+            $sets = $this->workoutRepository->getSets($user);
+            header('Content-type: application/json');
+            http_response_code(200);
 
+            echo json_encode($sets);
+        }
     }
 
     public function getStatistics()
     {
-        list(,$email,) = explode(' ',$_COOKIE['user']);
-        $user = $this->userRepository->getUser($email);
+        if($this->security->validate_cookie()) {
+            list(, $email,) = explode(' ', $_COOKIE['user']);
+            $user = $this->userRepository->getUser($email);
 
-        $stats = $this->workoutRepository->getStatistics($user);
-        header('Content-type: application/json');
-        http_response_code(200);
+            $stats = $this->workoutRepository->getStatistics($user);
+            header('Content-type: application/json');
+            http_response_code(200);
 
-        echo json_encode($stats);
+            echo json_encode($stats);
+        }
+    }
+
+    public function getWorkoutVolumes()
+    {
+        if($this->security->validate_cookie()) {
+            list(, $email,) = explode(' ', $_COOKIE['user']);
+            $user = $this->userRepository->getUser($email);
+
+            $volumes = $this->workoutRepository->getWorkoutVolumes($user);
+            header('Content-type: application/json');
+            http_response_code(200);
+
+            echo json_encode($volumes);
+        }
     }
 }

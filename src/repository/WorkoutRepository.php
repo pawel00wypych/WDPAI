@@ -5,6 +5,19 @@ require_once __DIR__.'/../models/User.php';
 class WorkoutRepository extends Repository
 {
 
+    public function getWorkoutVolumes($user)
+    {
+        $stmt = $this->database->connect()->prepare('
+            SELECT total_volume, created_at FROM workout WHERE id_user = :id_user ORDER BY created_at
+        ');
+
+        $id = $user->getId();
+        $stmt->bindParam(':id_user', $id);
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public function getWorkouts($user)
     {
         $stmt = $this->database->connect()->prepare('

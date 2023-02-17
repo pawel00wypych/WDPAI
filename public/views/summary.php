@@ -4,6 +4,7 @@
     <link rel="stylesheet" type="text/css" href="public/css/style-app.css">
     <script src="https://kit.fontawesome.com/a3055391a0.js" crossorigin="anonymous"></script>
     <script type="text/javascript" src="/public/js/summary.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
 </head>
 <body>
     <div class="top-container">
@@ -66,6 +67,11 @@
           <div class="main-mid">
               <div id="summary">
 
+
+              </div>
+              <div id="charts">
+                  <h2>Charts</h2>
+                  <canvas id="myChart"></canvas>
               </div>
           </div>
 
@@ -92,30 +98,57 @@
 
 <template id="summary-template">
     <div class="summary-container">
+        <h1 class="training header">Last Workout:</h1>
         <div id="last-training">
-            <div id="last-training-1"></div>
-            <div id="last-training-2"></div>
-            <div id="last-training-3"></div>
-            <div id="last-training-4"></div>
-            <div id="last-training-5"></div>
-            <div id="last-training-6"></div>
-            <div id="last-training-7"></div>
-            <div id="last-training-8"></div>
+            <div class="property">
+                <h3>name:</h3>
+                <div id="last-training-1"></div>
+            </div>
+            <div class="property">
+                <h3>date:</h3>
+                <div id="last-training-2"></div>
+            </div>
+            <div class="property">
+                <h3>description:</h3>
+                <div id="last-training-3"></div>
+            </div>
+            <div class="property">
+                <h3>total-time:</h3>
+                <div id="last-training-4"></div>
+            </div>
+            <div class="property">
+                <h3>total-volume:</h3>
+                <div id="last-training-5"></div>
+            </div>
+            <div class="property">
+                <h3>total-reps:</h3>
+                <div id="last-training-6"></div>
+            </div>
+            <div class="property">
+                <h3>total-hsr:</h3>
+                <div id="last-training-7"></div>
+            </div>
+            <div class="property">
+                <h3>body-weight:</h3>
+                <div id="last-training-8"></div>
+            </div>
         </div>
     </div>
     <div class="summary-container">
+        <h1 class="training header">Total Workouts:</h1>
         <div id="total-workouts">total workouts</div>
     </div>
     <div class="summary-container">
+        <h1 class="training header">Total Volume:</h1>
         <div id="total-volume">total volume</div>
     </div>
     <div class="summary-container">
+        <h1 class="training header">Total Reps:</h1>
         <div id="total-reps">total reps</div>
     </div>
     <div class="summary-container">
+        <h1 class="training header">Total Highly Stimulating Reps:</h1>
         <div id="total-hsr">total hsr</div>
     </div>
-    <div class="summary-container">
-        <div id="chart">chart</div>
-    </div>
+    <div class="line"></div>
 </template>

@@ -196,7 +196,6 @@ main {
   margin: 0.5em 2em;
   display: flex;
   flex-direction: row;
-  /*! text-align: center; */
   align-items: center;
 }
 
@@ -243,6 +242,25 @@ main {
 
 }
 
+#last-training {
+  display: flex;
+  flex-direction: row;
+}
+
+#summary {
+  margin: 2em 2em;
+}
+
+.summary-container {
+  margin-bottom: 2em;
+  margin-top: 2em;
+}
+
+#charts {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 
 .users {
   margin: 0 0;
@@ -388,7 +406,7 @@ h2 {
   width: 80vw;
   min-height: 3px;
   background: black;
-  margin: 1vh auto;
+  margin: 7em auto 0.5em auto;
 }
 
 .main-bot {
@@ -467,7 +485,7 @@ h2 {
   font-size: 16px;
 }
 
-#routine-name {
+.routine{
   margin: 2vh auto;
   display: flex;
   flex-direction: column;
@@ -483,7 +501,6 @@ h2 {
   flex-direction: column;
   text-align: center;
   font-size: 22px;
-  /*! width: 3em; */
   height: 4em;
 }
 
@@ -493,7 +510,6 @@ h2 {
   flex-direction: column;
   text-align: center;
   font-size: 22px;
-  /*! width: 3em; */
   height: 4em;
 }
 

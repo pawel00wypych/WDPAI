@@ -12,8 +12,17 @@ function showSummary() {
     });
 }
 
-function showData(data) {
+function loadWorkoutVolumes() {
+    fetch("/getWorkoutVolumes")
+        .then(function (response) {
+            return response.json();
+        }).then(function (data) {
+        showChart(data);
+    });
+}
 
+function showData(data) {
+    loadWorkoutVolumes();
     const clone = summaryTemplate.content.cloneNode(true);
 
     const lastTraining1 = clone.querySelector("#last-training-1");
@@ -43,23 +52,71 @@ function showData(data) {
     totalHsr.innerHTML = data[2][0]["hsr"];
 
     summaryContainer.appendChild(clone);
+
+
 }
 
-document.addEventListener('readystatechange', event => {
-    switch (document.readyState) {
-        case "loading":
-            console.log("document.readyState: ", document.readyState,
-                `- The document is still loading.`
-            );
-            break;
-        case "interactive":
-            console.log("document.readyState: ", document.readyState,
-                `- The document has finished loading DOM. `,
-                `- "DOMContentLoaded" event`
-            );
-            break;
-        case "complete":
-            showSummary();
-            break;
-    }
-});
+function showChart(data) {
+
+    let values = [];
+    let dates = [];
+
+    data.forEach(element => {
+        dates.push(element["created_at"]);
+        values.push(element["total_volume"]);
+    });
+
+    const ctx = document.getElementById("myChart")
+
+    const myChart = new Chart(ctx, {
+        type: "line",
+        fontColor: 'C90404FF',
+        data: {
+            labels: dates,
+            datasets: [
+                {
+                    label: "Total Workout Volume",
+                    data: values,
+                    backgroundColor: "red",
+                    borderColor: 'black',
+                    borderWidth: 1,
+                },
+            ],
+        },
+        options: {
+            plugins: {
+                legend: {
+                    labels: {
+                        color: "black",
+                        font: {
+                            size: 20
+                        }
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    ticks: {
+                        color: "black",
+                        font: {
+                            size: 16,
+                        },
+                        beginAtZero: true
+                    }
+                },
+                x: {
+                    ticks: {
+                        color: "black",
+                        font: {
+                            size: 18
+                        },
+                    }
+                }
+            }
+        }
+    });
+}
+
+
+
+document.addEventListener("DOMContentLoaded", showSummary);

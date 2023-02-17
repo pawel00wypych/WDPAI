@@ -106,77 +106,73 @@ class SecurityController extends DefaultController
 	    return $str;
     }
 
-    function validate_cookie(): bool
+    function validate_cookie()
     {
-
-        list(,, $hashed_secret_word) = explode(' ',$_COOKIE['user']);
-        if (password_verify($this->secret_word, $hashed_secret_word)) {
-             return true;
-         }
-
-        return false;
+        if (isset($_COOKIE['user'])) {
+            list(,, $hashed_secret_word) = explode(' ',$_COOKIE['user']);
+            if (password_verify($this->secret_word, $hashed_secret_word)) {
+                return true;
+            }
+        }
+        else {
+            $url = "http://$_SERVER[HTTP_HOST]";
+            header("Location:$url/login");
+        }
     }
 
     public function summary() {
 
-        if(isset($_COOKIE['user']) && $this->validate_cookie())
+        if ($this->validate_cookie())
             $this->render('summary');
-        else {
-            $url = "http://$_SERVER[HTTP_HOST]";
-            header("Location:$url/login");
-        }
+
     }
 
     public function add_routine() {
 
-        if(isset($_COOKIE['user']) && $this->validate_cookie())
+        if ($this->validate_cookie())
             $this->render('add_routine');
-        else {
-            $url = "http://$_SERVER[HTTP_HOST]";
-            header("Location:$url/login");
-        }
+
     }
 
     public function workout_history() {
 
-        if(isset($_COOKIE['user']) && $this->validate_cookie())
+        if($this->validate_cookie())
             $this->render('workout_history');
-        else {
-            $url = "http://$_SERVER[HTTP_HOST]";
-            header("Location:$url/login");
-        }
-
     }
 
     public function settings()
     {
-        list(,$cookie_email,) = explode(' ',$_COOKIE['user']);
-        $role = $this->userRepository->getUser($cookie_email)->getRole();
+        if ($this->validate_cookie()){
 
-        if (isset($_COOKIE['user']) && $this->validate_cookie() && ($role === 2))
-            $this->render('admin_settings', ['users' => '']);
-        else if (isset($_COOKIE['user']) && $this->validate_cookie() && ($role === 1))
-            $this->render('settings');
-        else
-        {
-            $url = "http://$_SERVER[HTTP_HOST]";
-            header("Location:$url/login");
+            list(, $cookie_email,) = explode(' ', $_COOKIE['user']);
+            $role = $this->userRepository->getUser($cookie_email)->getRole();
+
+            if ($role === 2)
+                $this->render('admin_settings', ['users' => '']);
+            else if ($role === 1)
+                $this->render('settings');
+            else {
+                $url = "http://$_SERVER[HTTP_HOST]";
+                header("Location:$url/login");
+            }
         }
     }
 
     public function getUsers() {
 
-        $users= $this->userRepository->getUsers();
-        header('Content-type: application/json');
-        http_response_code(200);
+        if ($this->validate_cookie()) {
+            $users = $this->userRepository->getUsers();
+            header('Content-type: application/json');
+            http_response_code(200);
 
-        echo json_encode($users);
+            echo json_encode($users);
+        }
     }
 
     public function logout() {
 
-        if (isset($_COOKIE["user"]) && $this->validate_cookie()){
-            setcookie("user", '', time() - (180));
+        if ($this->validate_cookie()){
+            setcookie("user", '', time() - (1800));
         }
 
         $url = "http://$_SERVER[HTTP_HOST]";
