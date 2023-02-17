@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
     <link rel="stylesheet" type="text/css" href="/public/css/style.css">
-    <script type="text/javascript" src="/public/js/script.js" defer></script>
+    <script type="text/javascript" src="/public/js/registerValidation.js" defer></script>
 </head>
 <body>
     <div class="container">
@@ -34,19 +34,19 @@
                             <div id="email-1">
                                 EMAIL:
                             </div>
-                            <input name="email" type="email" placeholder="email@email.com">
+                            <input name="email" type="email" placeholder="email@email.com" required>
                             <div id="password-1">
                                 PASSWORD:
                             </div>
-                            <input name="password" type="password" placeholder="password">
+                            <input name="password" type="password" placeholder="password" required>
                             <div id="password-1">
                                 CONFIRM PASSWORD:
                             </div>
-                            <input name="confirmedPassword" type="password" placeholder="password">
+                            <input name="confirmedPassword" type="password" placeholder="password" required>
                             <div id="password-1">
                             NAME:
                             </div>
-                            <input name="name" type="text" placeholder="name">
+                            <input name="name" type="text" placeholder="name" required>
                             <div id="password-1">
                             SURNAME:
                             </div>

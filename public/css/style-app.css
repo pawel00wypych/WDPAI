@@ -260,6 +260,9 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  height: 60vh;
+  /*! width: 80vw; */
+  align-items: center;
 }
 
 .users {

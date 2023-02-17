@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <head>
     <link rel="stylesheet" type="text/css" href="public/css/style.css">
-      
+    <script type="text/javascript" src="/public/js/loginValidation.js" defer></script>
+
 </head>
 <body>
     <div class="container">
@@ -35,11 +36,11 @@
                                 EMAIL:
                             </div>
                             
-                            <input name="email" type="email" placeholder="email@email.com">
+                            <input name="email" type="email" placeholder="email@email.com" required>
                             <div id="password-1">
                                 PASSWORD:
                             </div>
-                            <input name="password" type="password" placeholder="password">
+                            <input name="password" type="password" placeholder="password" required>
                             <div></div>
                             <button type="submit">
                                 LOGIN

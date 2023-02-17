@@ -210,7 +210,6 @@ form{
     padding: 0 0.2em;
     display: flex;
     justify-content: flex-end;
-    /*! align-items: center; */
 }
 
 #password-1 {
@@ -222,15 +221,11 @@ form{
 
 input{
     padding: 0 0.2em;
-    /*! display: flex; */
-    /*! justify-content: flex-end; */
-    /*! align-items: center; */
 
     background: #6F1C1C;
     border: 1px solid #000000;
     border-radius: 10px;
     margin-right: 7vw;
-    /*! line-height: 5em; */
 
     font-size: 16px;
 }
@@ -508,4 +503,10 @@ button:hover {
     border: 4px solid red;
     box-shadow: 0 0 0.2em red;
     border-radius: 10px;
+}
+
+.form-error-text {
+
+    font-family: Verdana;
+    color: red;
 }
