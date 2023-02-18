@@ -82,7 +82,7 @@ class UserRepository extends Repository
             $date->format("Y-m-d")
         ]);
 
-        return $stmt->fetch(PDO::FETCH_ASSOC);;
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
     public function getUserDetailsId(TempUser $user): int

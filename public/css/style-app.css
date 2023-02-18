@@ -261,7 +261,6 @@ main {
   flex-direction: column;
   justify-content: center;
   height: 60vh;
-  /*! width: 80vw; */
   align-items: center;
 }
 
@@ -476,10 +475,6 @@ h2 {
   border-radius: 5px;
 }
 
-/*******************************************************************************************************************/
-
-
-/* ADD ROUTINE START*/
 .routine-text {
   border: 2px solid #000000;
   border-radius: 10px;
@@ -519,11 +514,7 @@ h2 {
 #routine-save {
   margin: auto auto;
 }
-/* ADD ROUTINE STOP*/
 
-/*******************************************************************************************************************/
-
-/* ADD WORKOUT START*/
 #template-or-nontemplate {
   margin: 2vh auto;
   font-size: 25px;
@@ -534,12 +525,6 @@ h2 {
 #template-buttons {
   margin: 2vh auto;
 }
-/* ADD WORKOUT STOP*/
-
-/*******************************************************************************************************************/
-
-
-/* SUMMARY START*/
 
 #message {
   font-size: 25px;
@@ -555,7 +540,6 @@ h2 {
   padding: 1em;
 }
 
-/* SUMMARY STOP*/
 
 button:hover {
   cursor:pointer;
