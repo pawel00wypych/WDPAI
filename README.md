@@ -8,9 +8,9 @@
 
 ## Setup
 
-- Install Docker
+- Install Docker.
 
-- Clone this repository
+- Clone this repository.
 
 - Create an .env file, which includes database connection details:
 
@@ -20,12 +20,16 @@ DB_USER=''
 DB_PASSWORD=''
 ```
 
-- Start docker containers in root directory
+- Start docker containers in root directory.
 ```bash
 docker compose up
 ```
+- Run database.sql to create and fill tables
 
 - Open `http://localhost:8080` in your browser.
+
+- Additionally if there are any problems with SQL queries, you should check SQL Dialect, it should be set to PosgreSQL Dialect.
+
 
 # ERD Diagram
 
