@@ -29,6 +29,7 @@ docker compose up
 
 # ERD Diagram
 
+![ERD](https://user-images.githubusercontent.com/92308173/219826516-23c912dd-b20b-462f-909d-c4bf6053dad4.png)
 
 # Screenshots
 
