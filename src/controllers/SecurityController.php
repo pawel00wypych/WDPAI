@@ -87,10 +87,10 @@ class SecurityController extends DefaultController
         }
 
 
-        $user = new User($email, password_hash($password, PASSWORD_BCRYPT, ['salt'=>$salt]), $name, $surname, $salt, 1);
-        $user->setPhone($phone);
+        $userTemp = new TempUser($email, password_hash($password, PASSWORD_BCRYPT, ['salt'=>$salt]), $name, $surname, $salt, 1, $phone);
 
-        $this->userRepository->addUser($user);
+        $data = $this->userRepository->addUser($userTemp);
+        $user = new User($email, password_hash($password, PASSWORD_BCRYPT, ['salt'=>$salt]), $name, $surname, $salt, 1, $phone, $data["id_user"], $data["created_at"]);
 
         return $this->render('login', ['messages' => ['You\'ve been successfully registered!']]);
     }

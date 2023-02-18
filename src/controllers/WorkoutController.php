@@ -20,17 +20,16 @@ class WorkoutController extends DefaultController
     }
 
     public function saveWorkout() {
-
         if($this->security->validate_cookie()) {
-
             list(, $email,) = explode(' ', $_COOKIE['user']);
             $user = $this->userRepository->getUser($email);
 
             $contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
+
             if ($contentType == "application/json") {
 
                 $body = trim(file_get_contents("php://input"));
-
+                $this->render($body);
                 $result = $this->workoutRepository->saveWorkout($body, $user);
 
                 header('Content-type: application/json');

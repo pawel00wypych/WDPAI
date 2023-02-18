@@ -9,8 +9,8 @@ class UserRepository extends Repository
     public function userExists(string $email): bool
     {
         $stmt = $this->database->connect()->prepare('
-            SELECT * FROM "user" LEFT JOIN user_details 
-            ON "user".id_user_details = user_details.id_user_details WHERE email = :email
+            SELECT * FROM schema.users LEFT JOIN schema.user_details 
+            ON users.id_user_details = user_details.id_user_details WHERE email = :email
         ');
 
         $stmt->bindParam(':email', $email);
@@ -27,8 +27,8 @@ class UserRepository extends Repository
     public function getUser(string $email): ?User
     {
         $stmt = $this->database->connect()->prepare('
-            SELECT * FROM "user" LEFT JOIN user_details 
-            ON "user".id_user_details = user_details.id_user_details WHERE email = :email
+            SELECT * FROM schema.users LEFT JOIN schema.user_details 
+            ON users.id_user_details = user_details.id_user_details WHERE email = :email
         ');
 
         $stmt->bindParam(':email', $email);
@@ -47,28 +47,30 @@ class UserRepository extends Repository
             $user['surname'],
             $user['salt'],
             $user['id_role'],
-            $user["id_user"]
+            $user['phone'],
+            $user['id_user'],
+            $user['created_at']
         );
     }
 
-    public function addUser(User $user)
+    public function addUser(TempUser $user)
     {
         $date = new DateTime();
 
-        $stmt = $this->database->connect()->prepare('
-            INSERT INTO user_details (user_name, surname, phone)
+        $stmt1 = $this->database->connect()->prepare('
+            INSERT INTO schema.user_details (user_name, surname, phone)
             VALUES (?, ?, ?)
         ');
 
-        $stmt->execute([
+        $stmt1->execute([
             $user->getName(),
             $user->getSurname(),
             $user->getPhone()
         ]);
 
         $stmt = $this->database->connect()->prepare('
-            INSERT INTO "user" (id_role, email, user_password, id_user_details, salt, created_at)
-            VALUES (?, ?, ?, ?, ?, ?)
+            INSERT INTO schema.users (id_role, email, user_password, id_user_details, salt, created_at)
+            VALUES (?, ?, ?, ?, ?, ?) RETURNING id_user, created_at
         ');
 
         $stmt->execute([
@@ -79,12 +81,14 @@ class UserRepository extends Repository
             $user->getSalt(),
             $date->format("Y-m-d")
         ]);
+
+        return $data = $stmt->fetch(PDO::FETCH_ASSOC);;
     }
 
-    public function getUserDetailsId(User $user): int
+    public function getUserDetailsId(TempUser $user): int
     {
         $stmt = $this->database->connect()->prepare('
-            SELECT * FROM user_details WHERE user_name = :user_name AND surname = :surname AND phone = :phone
+            SELECT * FROM schema.user_details WHERE user_name = :user_name AND surname = :surname AND phone = :phone
         ');
         $name = $user->getName();
         $stmt->bindParam(':user_name', $name);
@@ -101,9 +105,9 @@ class UserRepository extends Repository
     public function getUsers(): array
     {
         $stmt = $this->database->connect()->prepare('
-            SELECT * FROM "user" 
-                inner join user_details ud on ud.id_user_details = "user".id_user_details 
-                inner join role r on r.id_role = "user".id_role;
+            SELECT * FROM schema.users 
+                inner join schema.user_details ud on ud.id_user_details = users.id_user_details 
+                inner join schema.role r on r.id_role = users.id_role;
         ');
         $stmt->execute();
 

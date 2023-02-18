@@ -27,12 +27,14 @@ function showWorkouts() {
 function loadWorkouts(workouts, exercises, sets) {
 
     workouts.forEach(workout => {
-        showWorkout(workout, exercises, sets);
+        showWorkout(workout);
         loadExercises(workout, exercises, sets);
+
     });
 }
 
 function showWorkout(workout) {
+
 
     const clone = workoutTemplate.content.cloneNode(true);
 
@@ -58,14 +60,15 @@ function loadExercises(workout, exercises, sets) {
 
     exercises.forEach(exercise => {
         if(workout["id_exercise"] === exercise["id_exercise"]) {
-            showExercise(workout, exercise);
+
+            showExercise(exercise);
             loadSets(exercise, sets);
         }
     });
 }
 
 
-function showExercise(workout, exercise) {
+function showExercise(exercise) {
 
         const clone = exerciseTemplate.content.cloneNode(true);
 

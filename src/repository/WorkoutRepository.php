@@ -4,15 +4,14 @@ require_once 'Repository.php';
 require_once __DIR__.'/../models/User.php';
 class WorkoutRepository extends Repository
 {
-
     public function getWorkoutVolumes($user)
     {
         $stmt = $this->database->connect()->prepare('
-            SELECT total_volume, created_at FROM workout WHERE id_user = :id_user ORDER BY created_at
+            SELECT total_volume, created_at FROM schema.workout WHERE id_user = :id_user ORDER BY created_at
         ');
 
-        $id = $user->getId();
-        $stmt->bindParam(':id_user', $id);
+        $userID = $user->getId();
+        $stmt->bindParam(':id_user', $userID);
         $stmt->execute();
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -21,12 +20,13 @@ class WorkoutRepository extends Repository
     public function getWorkouts($user)
     {
         $stmt = $this->database->connect()->prepare('
-            SELECT * FROM workout inner join workout_exercise we on workout.id_workout = we.id_workout  WHERE id_user = :id_user
+            SELECT * FROM schema.workout inner join schema.workout_exercise we on workout.id_workout = we.id_workout  WHERE id_user = :id_user
         ');
 
-        $id = $user->getId();
-        $stmt->bindParam(':id_user', $id);
+        $userID = $user->getId();
+        $stmt->bindParam(':id_user', $userID);
         $stmt->execute();
+
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -34,14 +34,14 @@ class WorkoutRepository extends Repository
     public function getExercises($user)
     {
         $stmt = $this->database->connect()->prepare('
-            SELECT exercise.* 
-            FROM exercise WHERE
-                id_exercise IN (SELECT workout_exercise.id_exercise FROM workout_exercise  WHERE                               
-                id_workout IN (SELECT id_workout FROM workout WHERE workout.id_user = :id_user))
+            SELECT schema.exercise.* 
+            FROM schema.exercise WHERE
+                id_exercise IN (SELECT schema.workout_exercise.id_exercise FROM schema.workout_exercise  WHERE                               
+                id_workout IN (SELECT id_workout FROM schema.workout WHERE workout.id_user = :id_user))
         ');
 
-        $id = $user->getId();
-        $stmt->bindParam(':id_user', $id);
+        $userID = $user->getId();
+        $stmt->bindParam(':id_user', $userID);
         $stmt->execute();
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -50,35 +50,35 @@ class WorkoutRepository extends Repository
     public function getSets($user)
     {
         $stmt = $this->database->connect()->prepare('
-            SELECT exercise_set.* 
-            FROM exercise_set WHERE
-                id_exercise IN (SELECT id_exercise FROM exercise WHERE 
-                id_exercise IN (SELECT id_exercise FROM workout_exercise WHERE
-                id_workout IN (SELECT id_workout FROM workout WHERE workout.id_user = :id_user)))
+            SELECT schema.exercise_set.* 
+            FROM schema.exercise_set WHERE
+                id_exercise IN (SELECT id_exercise FROM schema.exercise WHERE 
+                id_exercise IN (SELECT id_exercise FROM schema.workout_exercise WHERE
+                id_workout IN (SELECT id_workout FROM schema.workout WHERE workout.id_user = :id_user)))
                 
         ');
 
-        $id = $user->getId();
-        $stmt->bindParam(':id_user', $id);
+        $userID = $user->getId();
+        $stmt->bindParam(':id_user', $userID);
         $stmt->execute();
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function saveWorkout(string $body, $user)
+    public function saveWorkout(string $body,User $user)
     {
         $decoded = json_decode($body, true);
+
         $stmt = $this->database->connect()->prepare('
-            INSERT INTO workout(id_user, description, workout_name, total_time, total_hsr, total_volume, total_reps, created_at, body_weight) 
+            INSERT INTO schema.workout(id_user, description, workout_name, total_time, total_hsr, total_volume, total_reps, created_at, body_weight) 
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING id_workout
         ');
-
-
+        $userID = $user->getId();
 
         $created = new DateTime();
         try {
             $stmt->execute([
-                $user->getId(),
+                $userID,
                 $decoded["workout"]["description"],
                 $decoded["workout"]["workout_name"],
                 $decoded["workout"]["total_time"],
@@ -94,12 +94,12 @@ class WorkoutRepository extends Repository
             foreach ($decoded["exercises"] as $exercise) {
 
                 $stmt2 = $this->database->connect()->prepare('
-                    INSERT INTO exercise(id_user, exercise_name, total_hsr, total_reps, total_volume, created_at, break) 
+                    INSERT INTO schema.exercise(id_user, exercise_name, total_hsr, total_reps, total_volume, created_at, break) 
                     VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING id_exercise
                 ');
 
                 $stmt2->execute([
-                    $user->getId(),
+                    $userID,
                     $exercise["exercise_name"],
                     $exercise["total_hsr"],
                     $exercise["total_reps"],
@@ -111,7 +111,7 @@ class WorkoutRepository extends Repository
                 $exerciseID = $stmt2->fetchColumn();
 
                 $stmt3 = $this->database->connect()->prepare('
-                    INSERT INTO workout_exercise(id_workout, id_exercise) 
+                    INSERT INTO schema.workout_exercise(id_workout, id_exercise) 
                     VALUES (?, ?)
                 ');
 
@@ -123,7 +123,7 @@ class WorkoutRepository extends Repository
                 foreach ($decoded["sets"] as $set) {
                     if($set["exercise_name"] == $exercise["exercise_name"]) {
                         $stmt4 = $this->database->connect()->prepare('
-                    INSERT INTO exercise_set(id_exercise, reps, rir, rpe, weight) 
+                    INSERT INTO schema.exercise_set(id_exercise, reps, rir, rpe, weight) 
                     VALUES (?, ?, ?, ?, ?)
                     ');
 
@@ -152,19 +152,19 @@ class WorkoutRepository extends Repository
 
         $stmt = $this->database->connect()->prepare('
             SELECT *
-            FROM workout WHERE (SELECT MAX(created_at) FROM workout WHERE id_user = :id_user) = created_at                     
+            FROM schema.workout WHERE (SELECT MAX(created_at) FROM schema.workout WHERE id_user = :id_user) = created_at                     
               
         ');
 
         $stmt2 = $this->database->connect()->prepare('
             SELECT COUNT(*) 
-            FROM workout WHERE id_user = :id_user;                    
+            FROM schema.workout WHERE id_user = :id_user;                    
               
         ');
 
         $stmt3 = $this->database->connect()->prepare('
             SELECT SUM (total_volume) AS volume , SUM (total_reps) AS reps, SUM (total_hsr) AS hsr
-            FROM workout
+            FROM schema.workout
             WHERE  id_user = :id_user;                    
                           
         ');
