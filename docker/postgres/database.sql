@@ -1,5 +1,3 @@
-create schema schema;
-
 create sequence user_id_user_seq
     as integer;
 
@@ -175,3 +173,5 @@ values  (5, 1),
         (6, 2),
         (6, 3),
         (6, 4);
+
+alter schema schema rename to schema;
