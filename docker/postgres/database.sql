@@ -1,3 +1,5 @@
+create schema schema;
+
 create sequence user_id_user_seq
     as integer;
 
@@ -30,7 +32,7 @@ alter table user_details
 
 create table users
 (
-    id_user         integer default nextval('schema.user_id_user_seq'::regclass) not null
+    id_user         integer default nextval('user_id_user_seq'::regclass) not null
         constraint user_pkey
             primary key
         constraint user_id_user_key
@@ -134,6 +136,22 @@ create table exercise_set
 alter table exercise_set
     owner to dbuser;
 
+insert into role (id_role, role)
+values  (1, 'user'),
+        (2, 'admin');
+
+insert into user_details (id_user_details, user_name, surname, phone)
+values  (1, 'john', 'snow', 111222333),
+        (4, 'jan', 'woj', 111222333),
+        (5, 'pawel', 'kowalski', 111222333);
+
+insert into users (id_user, id_user_details, id_role, email, user_password, salt, created_at)
+values  (1, 1, 2, 'jsnow@admin.com', '$2y$10$a2RnYjJ3KEVPciZ6UnpJSOX.EO2Dicfj.k0XVbXWKg0Mi3rXgdkHK', 'kdgb2w(EOr&zRzII_0V-KF', '2023-02-17'),
+        (2, 4, 1, 'jan@email.com', '$2y$10$KVV1Jk5WOFNfJlIpRSNwLO4oj14EYx.YCo/zi.B7KSDHfKBdoxPOa', ')Uu&NV8S_&R)E#p-h3S$ib', '2023-02-17'),
+        (4, 5, 1, 'pawel@email.com', '$2y$10$JWw1RS1TX1lwcD1nYU5JXuC9BnVb54Ay0lnA4diY9lAyskJQPpnRa', '%l5E-S_Ypp=gaNI_ztLvAj', '2023-02-17');
+
+
+
 insert into exercise (id_exercise, id_user, exercise_name, description, total_hsr, total_reps, total_volume, created_at, break)
 values  (1, 1, 'squat', null, 3, 10, 1000, '2023-02-18', '02:00'),
         (2, 1, 'deadlift', null, 7, 18, 2700, '2023-02-18', '02:00'),
@@ -147,19 +165,6 @@ values  (1, 1, 10, 2, 8, 100),
         (4, 3, 8, 2, 8, 10),
         (5, 4, 18, 1, 9, 18);
 
-insert into role (id_role, role)
-values  (1, 'user'),
-        (2, 'admin');
-
-insert into user_details (id_user_details, user_name, surname, phone)
-values  (1, 'john', 'snow', 111222333),
-        (4, 'jan', 'wojtas', 111222333),
-        (5, 'pawel', 'kowalski', 111222333);
-
-insert into users (id_user, id_user_details, id_role, email, user_password, salt, created_at)
-values  (1, 1, 2, 'jsnow@admin.com', '$2y$10$a2RnYjJ3KEVPciZ6UnpJSOX.EO2Dicfj.k0XVbXWKg0Mi3rXgdkHK', 'kdgb2w(EOr&zRzII_0V-KF', '2023-02-17'),
-        (2, 4, 1, 'jan@email.com', '$2y$10$KVV1Jk5WOFNfJlIpRSNwLO4oj14EYx.YCo/zi.B7KSDHfKBdoxPOa', ')Uu&NV8S_&R)E#p-h3S$ib', '2023-02-17'),
-        (4, 5, 1, 'pawel@email.com', '$2y$10$JWw1RS1TX1lwcD1nYU5JXuC9BnVb54Ay0lnA4diY9lAyskJQPpnRa', '%l5E-S_Ypp=gaNI_ztLvAj', '2023-02-17');
 
 insert into workout (id_workout, id_user, description, workout_name, total_time, total_hsr, total_volume, total_reps, created_at, body_weight)
 values  (5, 1, 'light', 'push', '01:30', 3, 1000, 10, '2023-02-18', 80),
