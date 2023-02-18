@@ -9,7 +9,7 @@ class UserRepository extends Repository
     public function userExists(string $email): bool
     {
         $stmt = $this->database->connect()->prepare('
-            SELECT * FROM schema.users LEFT JOIN schema.user_details 
+            SELECT * FROM users LEFT JOIN user_details 
             ON users.id_user_details = user_details.id_user_details WHERE email = :email
         ');
 
@@ -27,7 +27,7 @@ class UserRepository extends Repository
     public function getUser(string $email): ?User
     {
         $stmt = $this->database->connect()->prepare('
-            SELECT * FROM schema.users LEFT JOIN schema.user_details 
+            SELECT * FROM users LEFT JOIN user_details 
             ON users.id_user_details = user_details.id_user_details WHERE email = :email
         ');
 
@@ -58,7 +58,7 @@ class UserRepository extends Repository
         $date = new DateTime();
 
         $stmt1 = $this->database->connect()->prepare('
-            INSERT INTO schema.user_details (user_name, surname, phone)
+            INSERT INTO user_details (user_name, surname, phone)
             VALUES (?, ?, ?)
         ');
 
@@ -69,7 +69,7 @@ class UserRepository extends Repository
         ]);
 
         $stmt = $this->database->connect()->prepare('
-            INSERT INTO schema.users (id_role, email, user_password, id_user_details, salt, created_at)
+            INSERT INTO users (id_role, email, user_password, id_user_details, salt, created_at)
             VALUES (?, ?, ?, ?, ?, ?) RETURNING id_user, created_at
         ');
 
@@ -82,13 +82,13 @@ class UserRepository extends Repository
             $date->format("Y-m-d")
         ]);
 
-        return $data = $stmt->fetch(PDO::FETCH_ASSOC);;
+        return $stmt->fetch(PDO::FETCH_ASSOC);;
     }
 
     public function getUserDetailsId(TempUser $user): int
     {
         $stmt = $this->database->connect()->prepare('
-            SELECT * FROM schema.user_details WHERE user_name = :user_name AND surname = :surname AND phone = :phone
+            SELECT * FROM user_details WHERE user_name = :user_name AND surname = :surname AND phone = :phone
         ');
         $name = $user->getName();
         $stmt->bindParam(':user_name', $name);
@@ -105,9 +105,9 @@ class UserRepository extends Repository
     public function getUsers(): array
     {
         $stmt = $this->database->connect()->prepare('
-            SELECT * FROM schema.users 
-                inner join schema.user_details ud on ud.id_user_details = users.id_user_details 
-                inner join schema.role r on r.id_role = users.id_role;
+            SELECT * FROM users 
+                inner join user_details ud on ud.id_user_details = users.id_user_details 
+                inner join role r on r.id_role = users.id_role;
         ');
         $stmt->execute();
 

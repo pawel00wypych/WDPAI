@@ -173,5 +173,3 @@ values  (5, 1),
         (6, 2),
         (6, 3),
         (6, 4);
-
-alter schema schema rename to schema;
